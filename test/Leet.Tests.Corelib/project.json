@@ -1,0 +1,45 @@
+{
+  "version": "0.0.1-*",
+  "title": "Leet.Tests.Corelib",
+  "description": "A library package that contains tests for Leet.Corelib library package.",
+  "copyright": "© 2016 Leet. Licensed under the MIT License.",
+  "language": "en-US",
+  "authors": [ "Hubert Bukowski" ],
+
+  "packOptions": {
+    "owners": [ "Leet" ],
+    "projectUrl": "https://github.com/Leet/Corelib",
+    "licenseUrl": "https://raw.githubusercontent.com/Leet/Corelib/v0.0.2/LICENSE.txt",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/Leet/Corelib"
+    }
+  },
+
+  "buildOptions": {
+    "keyFile": "../../tools/Leet.snk",
+    "warningsAsErrors": true
+  },
+
+  "frameworks": {
+    "net451": {
+      "imports": [
+        "netstandard1.0",
+        "netstandard1.1"
+      ]
+    }
+  },
+
+  "dependencies": {
+    "Leet.Corelib": "0.0.1-*",
+    "Leet.Specifications.Corelib": "0.0.1-*",
+    "xunit": "2.2.0-*",
+    "NSubstitute": "2.0.0-*",
+    "AutoFixture": "3.50.1",
+    "AutoFixture.AutoNSubstitute": "3.50.1",
+    "AutoFixture.Xunit2": "3.50.1",
+    "dotnet-test-xunit": "2.2.0-*"
+  },
+
+  "testRunner": "xunit"
+}
