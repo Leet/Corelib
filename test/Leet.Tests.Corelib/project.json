@@ -2,7 +2,7 @@
   "version": "0.0.1-*",
   "title": "Leet.Tests.Corelib",
   "description": "A library package that contains tests for Leet.Corelib library package.",
-  "copyright": "© 2016 Leet. Licensed under the MIT License.",
+  "copyright": "Copyright (c) 2016 Leet. Licensed under the MIT License.",
   "language": "en-US",
   "authors": [ "Hubert Bukowski" ],
 
