@@ -9,7 +9,7 @@
   "packOptions": {
     "owners": [ "Leet" ],
     "projectUrl": "https://github.com/Leet/Corelib",
-    "licenseUrl": "https://raw.githubusercontent.com/Leet/Corelib/v0.0.2/LICENSE.txt",
+    "licenseUrl": "https://raw.githubusercontent.com/Leet/Corelib/v0.0.1/LICENSE.txt",
     "repository": {
       "type": "git",
       "url": "git://github.com/Leet/Corelib"
