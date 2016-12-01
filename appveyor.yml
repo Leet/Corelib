@@ -16,4 +16,5 @@ deploy:
 - provider: Environment
   name: MyGet
   on:
+    branch: master
     LEET_PUSH_NUGET: 1
