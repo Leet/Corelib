@@ -1,4 +1,4 @@
-version: 0.0.1.{build}-{branch}
+version: 0.0.2.{build}-{branch}
 init:
 - ps: git config --global core.autocrlf true
 environment:
