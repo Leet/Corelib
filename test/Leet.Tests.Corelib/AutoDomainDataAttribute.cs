@@ -7,7 +7,6 @@
 
 namespace Leet
 {
-    using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;
 
     /// <summary>

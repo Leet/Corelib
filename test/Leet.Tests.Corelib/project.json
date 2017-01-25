@@ -32,7 +32,6 @@
 
   "dependencies": {
     "Leet.Corelib": "0.0.2-*",
-    "Leet.Specifications.Corelib": "0.0.2-*",
     "xunit": "2.2.0-*",
     "NSubstitute": "2.0.0-*",
     "AutoFixture": "3.50.1",

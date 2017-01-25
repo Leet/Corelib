@@ -27,10 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spec", "spec", "{ED1B1092-56B9-4A61-A4EF-C11577A18861}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Leet.Specifications.Corelib", "spec\Leet.Specifications.Corelib\Leet.Specifications.Corelib.xproj", "{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +41,6 @@ Global
 		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +48,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB} = {61EF525C-05D7-466F-81C9-4D008E931129}
 		{623ABD0A-78D3-4597-83A4-B8D565EE65EC} = {B7830DEA-D115-49DE-A576-78BBBE650833}
-		{4C0BC5C7-A52A-4650-AA62-873B1AFD2B83} = {ED1B1092-56B9-4A61-A4EF-C11577A18861}
 	EndGlobalSection
 EndGlobal

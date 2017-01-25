@@ -71,7 +71,7 @@ namespace Leet
                 return e.InnerException;
             }
 
-            throw new InvalidOperationException(SpecificationResources.Exception_InvalidOperation_NoExpectedException);
+            throw new InvalidOperationException(TestResources.Exception_InvalidOperation_NoExpectedException);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Leet
                 return e.InnerException;
             }
 
-            throw new InvalidOperationException(SpecificationResources.Exception_InvalidOperation_NoExpectedException);
+            throw new InvalidOperationException(TestResources.Exception_InvalidOperation_NoExpectedException);
         }
     }
 }

@@ -22,13 +22,13 @@ namespace Leet.Properties {
     // with the /str option, or rebuild your VS project.
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SpecificationResources {
+    public class TestResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
-        internal SpecificationResources() {
+        internal TestResources() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace Leet.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Leet.Specifications.Corelib.Properties.SpecificationResources", typeof(SpecificationResources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Leet.Tests.Corelib.Properties.TestResources", typeof(TestResources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

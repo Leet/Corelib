@@ -11,7 +11,7 @@ build_script:
 test: off
 artifacts:
 - path: artifacts\build\Leet.Corelib\Release\Leet.Corelib.*.nupkg
-- path: artifacts\build\Leet.Specifications.Corelib\Release\Leet.Specifications.Corelib.*.nupkg
+- path: artifacts\build\Leet.Tests.Corelib\Release\Leet.Tests.Corelib.*.nupkg
 deploy:
 - provider: Environment
   name: MyGet
