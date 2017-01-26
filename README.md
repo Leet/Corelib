@@ -21,7 +21,7 @@ A repository for library packages with basic reusable functionality.
 [AppVeyorProject]: https://ci.appveyor.com/project/Leet/Corelib/branch/master
 
 [TravisCi]: https://travis-ci.org
-[TravisCiLogo]: https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=https%3A%2F%2Fcdn.travis-ci.com%2Fimages%2Flogos%2FTravisCI-Full-Color-7f5db09495c8b09c21cb678c4de18d21.png&container=focus&resize_h=38&refresh=31536000
+[TravisCiLogo]: https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=https%3A%2F%2Fcdn.travis-ci.com%2Fimages%2Flogos%2FTravisCI-Full-Color-45e242791b7752b745a7ae53f265acd4.png&container=focus&resize_h=38&refresh=31536000
 [TravisCiShield]: https://img.shields.io/travis/Leet/Corelib/master.svg
 [TravisCiProject]: https://travis-ci.org/Leet/Corelib
 
