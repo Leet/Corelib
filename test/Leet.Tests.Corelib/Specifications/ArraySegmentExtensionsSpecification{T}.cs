@@ -1,7 +1,8 @@
 //-----------------------------------------------------------------------
 // <copyright file="ArraySegmentExtensionsSpecification{T}.cs" company="Leet">
-//     Copyright (c) 2016 Leet. Licensed under the MIT License.
-//     See License.txt in the project root for license information.
+//     Copyright (c) Leet. All rights reserved.
+//     Licensed under the MIT License.
+//     See License.txt in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
