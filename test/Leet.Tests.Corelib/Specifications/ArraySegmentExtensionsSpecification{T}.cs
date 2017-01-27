@@ -28,10 +28,10 @@ namespace Leet.Specifications
         ///     for <see cref="ArraySegment{T}"/> created for <see langword="null"/> array.
         /// </summary>
         [Fact]
-        public void ToEnumerable_ForNullArraySegment_ReturnsEmptyCollection()
+        public void ToEnumerable_ArraySegmentOfT_ForSegmentOfNullArray_ReturnsEmptyCollection()
         {
             // Fixture setup
-            ArraySegment<T> sut = new ArraySegment<T>();
+            ArraySegment<T> sut = default(ArraySegment<T>);
 
             // Exercise system
             IEnumerable<T> result = sut.ToEnumerable();
@@ -58,7 +58,7 @@ namespace Leet.Specifications
         [InlineData(1, 0)]
         [InlineData(1, 1)]
         [InlineData(3, 1)]
-        public void ToEnumerable_ForEmptyArraySegment_ReturnsEmptyCollection(int arraySize, int arrayIndex)
+        public void ToEnumerable_ArraySegmentOfT_ForEmptyArraySegment_ReturnsEmptyCollection(int arraySize, int arrayIndex)
         {
             // Fixture setup
             IFixture fixture = new DomainFixture();
@@ -76,8 +76,8 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether the <see cref="ArraySegmentExtensions.ToEnumerable{T}(ArraySegment{T})"/> method returns an empty collection
-        ///     for zero length <see cref="ArraySegment{T}"/>.
+        ///     Checks whether the <see cref="ArraySegmentExtensions.ToEnumerable{T}(ArraySegment{T})"/> method returns correct collection
+        ///     for non-empty <see cref="ArraySegment{T}"/>.
         /// </summary>
         /// <param name="arraySize">
         ///     Size of the array for which an <see cref="ArraySegment{T}"/> is created.
@@ -95,7 +95,7 @@ namespace Leet.Specifications
         [InlineData(2, 1, 1)]
         [InlineData(3, 0, 3)]
         [InlineData(3, 1, 1)]
-        public void ToEnumerable_ForNonEmptyArraySegment_ReturnsSequenceOfArraySegmentElements(int arraySize, int arrayIndex, int segmentSize)
+        public void ToEnumerable_ArraySegmentOfT_ForNonEmptyArraySegment_ReturnsSequenceOfArraySegmentElements(int arraySize, int arrayIndex, int segmentSize)
         {
             // Fixture setup
             IFixture fixture = new DomainFixture();

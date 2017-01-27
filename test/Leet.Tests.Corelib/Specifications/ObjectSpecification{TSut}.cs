@@ -26,7 +26,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void ToString_Always_ReturnsNotNull(TSut sut)
+        public void ToString_Void_Always_ReturnsNotNull(TSut sut)
         {
             // Fixture setup
 
@@ -47,7 +47,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void Equals_CalledWithNull_ReturnsFalse(TSut sut)
+        public void Equals_Object_CalledWithNull_ReturnsFalse(TSut sut)
         {
             // Fixture setup
 
@@ -68,7 +68,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void Equals_CalledWithThis_ReturnsTrue(TSut sut)
+        public void Equals_Object_CalledWithThis_ReturnsTrue(TSut sut)
         {
             // Fixture setup
 
@@ -89,7 +89,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void GetHashCode_Alwyas_ReturnsSameValue(TSut sut)
+        public void GetHashCode_Void_Alwyas_ReturnsSameValue(TSut sut)
         {
             // Fixture setup
 

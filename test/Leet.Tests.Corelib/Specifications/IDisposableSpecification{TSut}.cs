@@ -28,7 +28,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void Dispose_Never_Throws(TSut sut)
+        public void Dispose_Void_Never_Throws(TSut sut)
         {
             // Fixture setup
 

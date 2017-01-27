@@ -6,21 +6,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using System;
 using Leet;
 using Leet.Specifications;
 
 /// <summary>
 ///     A class that tests <see cref="DisposableBase"/> class in a conformance to
-///     behavior specified for <see cref="DisposableBase"/> class.
+///     its specified behavior.
 /// </summary>
-public class DisposableBaseTests : DisposableBaseSpecification<DisposableBase>
+public sealed class DisposableBaseTests : DisposableBaseSpecification<DisposableBase>
 {
-    /// <summary>
-    ///     A class that tests <see cref="DisposableBase"/> class in a conformance to
-    ///     behavior specified for <see cref="IDisposable"/> interface.
-    /// </summary>
-    public class AsIDisposable : IDisposableSpecification<DisposableBase>
-    {
-    }
 }

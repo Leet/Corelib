@@ -73,7 +73,9 @@ namespace Leet
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            this.ContractRequiresPureEnsuresIsDisposed();
+            Contract.Requires(this.IsDisposed);
+            Contract.Ensures(this.IsDisposed);
+            Contract.Ensures(this.IsDisposed == Contract.OldValue(this.IsDisposed));
         }
 
         /// <summary>
@@ -85,83 +87,14 @@ namespace Leet
         [Pure]
         protected void ThrowIfDisposed()
         {
-            this.ContractPureEnsuresIsNotDisposed();
+            Contract.Ensures(!this.IsDisposed);
+            Contract.Ensures(this.IsDisposed == Contract.OldValue(this.IsDisposed));
             Contract.EnsuresOnThrow<ObjectDisposedException>(this.IsDisposed);
 
             if (this.IsDisposed)
             {
                 this.ThrowObjectDisposedException();
             }
-        }
-
-        /// <summary>
-        ///     A contract abbreviator method which ensures that the member will not change state of the object disposition.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "Required for code contracts.")]
-        [Pure]
-        [ContractAbbreviator]
-        protected void ContractPureIsDisposed()
-        {
-            Contract.Ensures(this.IsDisposed == Contract.OldValue(this.IsDisposed));
-        }
-
-        /// <summary>
-        ///     A contract abbreviator method which marks a member with visibility wider than <see langword="protected"/> as callable
-        ///     only on not disposed objects and ensures that the object will remain not disposed after the call.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "Required for code contracts.")]
-        [Pure]
-        [ContractAbbreviator]
-        protected void ContractPureEnsuresIsNotDisposed()
-        {
-            Contract.Ensures(!this.IsDisposed);
-            this.ContractPureIsDisposed();
-        }
-
-        /// <summary>
-        ///     A contract abbreviator method which marks a member with visibility narrower or equal to <see langword="protected"/> as callable
-        ///     only on not disposed objects and ensures that the object will remain not disposed after the call.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "Required for code contracts.")]
-        [Pure]
-        [ContractAbbreviator]
-        protected void ContractRequiresPureEnsuresIsNotDisposed()
-        {
-            Contract.Requires(!this.IsDisposed);
-            Contract.Ensures(!this.IsDisposed);
-            this.ContractPureIsDisposed();
-        }
-
-        /// <summary>
-        ///     A contract abbreviator method which marks a member with visibility wider than <see langword="protected"/> as callable
-        ///     only on disposed objects and ensures that the object will remain disposed after the call.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "Required for code contracts.")]
-        [Pure]
-        [ContractAbbreviator]
-        protected void ContractPureEnsuresIsDisposed()
-        {
-            Contract.Ensures(this.IsDisposed);
-            this.ContractPureIsDisposed();
-        }
-
-        /// <summary>
-        ///     A contract abbreviator method which marks a member with visibility narrower or equal to <see langword="protected"/> as callable
-        ///     only on disposed objects and ensures that the object will remain disposed after the call.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "Required for code contracts.")]
-        [Pure]
-        [ContractAbbreviator]
-        protected void ContractRequiresPureEnsuresIsDisposed()
-        {
-            Contract.Requires(this.IsDisposed);
-            Contract.Ensures(this.IsDisposed);
-            this.ContractPureIsDisposed();
         }
 
         /// <summary>

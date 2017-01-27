@@ -9,7 +9,6 @@
 namespace Leet
 {
     using System;
-    using System.Linq;
     using System.Reflection;
     using Properties;
 
@@ -32,14 +31,17 @@ namespace Leet
         ///     The collection of the arguments to pass to the invoked method.
         /// </param>
         /// <returns>
-        ///     Method invokation return value.
+        ///     Method invocation return value.
         /// </returns>
         public static object InvokeProtectedMethod(this object target, string name, params object[] args)
         {
             var type = target.GetType();
-            var method = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-                             .Where(x => x.Name == name).Single();
-            return method.Invoke(target, args);
+            return type.InvokeMember(
+                name,
+                BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance,
+                Type.DefaultBinder,
+                target,
+                args);
         }
 
         /// <summary>
@@ -61,11 +63,15 @@ namespace Leet
         public static Exception InvokeProtectedMethodWithException(this object target, string name, params object[] args)
         {
             var type = target.GetType();
-            var method = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-                             .Where(x => x.Name == name).Single();
+
             try
             {
-                method.Invoke(target, args);
+                type.InvokeMember(
+                    name,
+                    BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance,
+                    Type.DefaultBinder,
+                    target,
+                    args);
             }
             catch (TargetInvocationException e)
             {
@@ -90,9 +96,12 @@ namespace Leet
         public static object GetProtectedPropertyValue(this object target, string name)
         {
             var type = target.GetType();
-            var property = type.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                             .Where(x => x.Name == name).Single();
-            return property.GetValue(target);
+            return type.InvokeMember(
+                name,
+                BindingFlags.GetProperty | BindingFlags.NonPublic | BindingFlags.Instance,
+                Type.DefaultBinder,
+                target,
+                null);
         }
 
         /// <summary>
@@ -110,12 +119,15 @@ namespace Leet
         public static Exception GetProtectedPropertyValueWithException(this object target, string name)
         {
             var type = target.GetType();
-            var property = type.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                             .Where(x => x.Name == name).Single();
 
             try
             {
-                property.GetValue(target);
+                type.InvokeMember(
+                    name,
+                    BindingFlags.GetProperty | BindingFlags.NonPublic | BindingFlags.Instance,
+                    Type.DefaultBinder,
+                    target,
+                    null);
             }
             catch (TargetInvocationException e)
             {

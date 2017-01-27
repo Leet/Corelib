@@ -9,8 +9,8 @@
 namespace Leet.Specifications
 {
     using System;
-    using Xunit;
     using Leet;
+    using Xunit;
 
     /// <summary>
     ///     A class that specifies behavior for <see cref="ObjectExtensions"/> class.
@@ -24,7 +24,7 @@ namespace Leet.Specifications
         ///     Checks whether <see cref="ObjectExtensions.GetHashCodeAllowNull(object)"/> method returns zero for default instance.
         /// </summary>
         [Fact]
-        public void GetHashCodeAllowNull_ForDefaultInstance_ReturnsZero()
+        public void GetHashCodeAllowNull_Object_ForDefaultInstance_ReturnsZero()
         {
             // Fixture setup
             T sut = default(T);
@@ -47,7 +47,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void GetHashCodeAllowNull_ForNonNullReference_ReturnsSameResultAsGetHashCode(T sut)
+        public void GetHashCodeAllowNull_Object_ForNonNullReference_ReturnsSameResultAsGetHashCode(T sut)
         {
             // Fixture setup
             int expected = sut.GetHashCode();
@@ -62,7 +62,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object,string)"/> method returns <paramref name="nullRepresentation"/>
+        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object, string)"/> method returns <paramref name="nullRepresentation"/>
         ///     for default instance of the reference type and result same as <see cref="object.ToString"/> for structures.
         /// </summary>
         /// <param name="nullRepresentation">
@@ -70,7 +70,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void ToStringAllowNull_ForDefaultInstance_ReturnsNullRepresentationForReferenceTypeAndResultOfToStringForStructure(string nullRepresentation)
+        public void ToStringAllowNull_Object_String_ForDefaultInstance_ReturnsNullRepresentationForReferenceTypeAndResultOfToStringForStructure(string nullRepresentation)
         {
             // Fixture setup
             T sut = default(T);
@@ -98,7 +98,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void ToStringAllowNull_ForNonNullReference_ReturnsSameResultAsToString(T sut, string nullRepresentation)
+        public void ToStringAllowNull_Object_String_ForNonNullReference_ReturnsSameResultAsToString(T sut, string nullRepresentation)
         {
             // Fixture setup
             string expected = sut.ToString();
@@ -118,7 +118,7 @@ namespace Leet.Specifications
         ///     for <see langword="null"/> reference and <see langword="null"/> representation.
         /// </summary>
         [Fact]
-        public void ToStringAllowNull_ForNullReferenceAndNullRepresentation_ReturnsNull()
+        public void ToStringAllowNull_Object_String_ForNullReferenceAndNullRepresentation_ReturnsNull()
         {
             // Fixture setup
             T sut = default(T);
@@ -142,7 +142,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void ToStringAllowNull_ForNonNullReferenceAndNullRepresentation_ReturnsResultSameAsToString(T sut)
+        public void ToStringAllowNull_Object_String_ForNonNullReferenceAndNullRepresentation_ReturnsResultSameAsToString(T sut)
         {
             // Fixture setup
             string expected = sut.ToString();
@@ -162,7 +162,7 @@ namespace Leet.Specifications
         ///     for <see langword="null"/> reference.
         /// </summary>
         [Fact]
-        public void GetTypeAllowNull_ForNullReference_ReturnsNull()
+        public void GetTypeAllowNull_Object_ForNullReference_ReturnsNull()
         {
             // Fixture setup
             T sut = default(T);
@@ -186,7 +186,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void GetTypeAllowNull_ForNonNullReference_ReturnsSameResultAsGetType(T sut)
+        public void GetTypeAllowNull_Object_ForNonNullReference_ReturnsSameResultAsGetType(T sut)
         {
             // Fixture setup
             Type expectedType = sut.GetType();

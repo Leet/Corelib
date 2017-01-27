@@ -26,8 +26,6 @@ namespace Leet
         /// <returns>
         ///     A hash code of the specified object or 0 if the object is a <see langword="null"/> reference.
         /// </returns>
-        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "obj",
-            Justification = "Parameter name conforms object methods parameter naming convention.")]
         public static int GetHashCodeAllowNull(this object obj)
         {
             Contract.Ensures(!object.ReferenceEquals(obj, null) || Contract.Result<int>() == 0);
@@ -52,8 +50,6 @@ namespace Leet
         /// <returns>
         ///     A string that represents the specified object or specified string if the object is a <see langword="null"/> reference.
         /// </returns>
-        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "obj",
-            Justification = "Parameter name conforms object methods parameter naming convention.")]
         public static string ToStringAllowNull(this object obj, string nullRepresentation)
         {
             Contract.Ensures(!object.ReferenceEquals(obj, null) || object.ReferenceEquals(Contract.Result<string>(), nullRepresentation));
