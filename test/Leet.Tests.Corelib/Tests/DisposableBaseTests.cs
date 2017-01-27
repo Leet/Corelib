@@ -6,6 +6,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
 using Leet;
 using Leet.Specifications;
 

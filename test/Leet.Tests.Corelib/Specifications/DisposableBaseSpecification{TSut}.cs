@@ -37,7 +37,7 @@ namespace Leet.Specifications
 
         /// <summary>
         ///     Checks whether the construction of the <typeparamref name="TSut"/> object does not call
-        ///     <see cref="DisposableBase.Dispose"/> method.
+        ///     <see cref="DisposableBase.Dispose()"/> method.
         /// </summary>
         [Fact]
         public void Dispose_IsNeverCalled_UponConstruction()
@@ -56,7 +56,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether calling <see cref="DisposableBase.Dispose"/> for the first time calls
+        ///     Checks whether calling <see cref="DisposableBase.Dispose()"/> for the first time calls
         ///     <see cref="DisposableBase.Dispose(bool)"/> method with <see langword="true"/> argument.
         /// </summary>
         [Fact]
@@ -77,7 +77,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether calling <see cref="DisposableBase.Dispose"/> for the second time calls
+        ///     Checks whether calling <see cref="DisposableBase.Dispose()"/> for the second time calls
         ///     <see cref="DisposableBase.Dispose(bool)"/> method with <see langword="true"/> argument.
         /// </summary>
         [Fact]
@@ -203,7 +203,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="IDisposable.Dispose"/> method always supresses object finalization.
+        ///     Checks whether <see cref="IDisposable.Dispose()"/> method always supresses object finalization.
         /// </summary>
         [Fact]
         public void Dispose_Always_SpressesFinalization()

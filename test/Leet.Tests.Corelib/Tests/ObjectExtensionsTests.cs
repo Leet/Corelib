@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using Leet;
 using Leet.Specifications;
 
 /// <summary>
@@ -42,7 +43,7 @@ public class ObjectExtensionsTestsForAction : ObjectExtensionsSpecification<Acti
 }
 
 /// <summary>
-///     A class that tests <see cref="ObjectExtensions"/> class for <see cref="Nullable{decimal}"/>
+///     A class that tests <see cref="ObjectExtensions"/> class for <see cref="Nullable{T}">Nullable&lt;decimal></see>
 ///     generic type argument.
 /// </summary>
 public class ObjectExtensionsTestsForNullable : ObjectExtensionsSpecification<Nullable<decimal>>

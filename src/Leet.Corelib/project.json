@@ -18,6 +18,7 @@
 
   "buildOptions": {
     "keyFile": "../../tools/Leet.snk",
+    "xmlDoc": true,
     "warningsAsErrors": true
   },
 

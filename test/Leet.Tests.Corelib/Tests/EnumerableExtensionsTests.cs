@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using Leet;
 using Leet.Specifications;
 
 /// <summary>
@@ -42,7 +43,7 @@ public class EnumerableExtensionsTestsForAction : EnumerableExtensionsSpecificat
 }
 
 /// <summary>
-///     A class that tests <see cref="EnumerableExtensions"/> class for <see cref="Nullable{decimal}"/>
+///     A class that tests <see cref="EnumerableExtensions"/> class for <see cref="Nullable{T}">Nullable&lt;decimal></see>
 ///     generic type argument.
 /// </summary>
 public class EnumerableExtensionsTestsForNullable : EnumerableExtensionsSpecification<Nullable<decimal>>
@@ -58,7 +59,7 @@ public class EnumerableExtensionsTestsForIDisposable : EnumerableExtensionsSpeci
 }
 
 /// <summary>
-///     A class that tests <see cref="EnumerableExtensions"/> class for <see cref="Nullable{decimal}"/>
+///     A class that tests <see cref="EnumerableExtensions"/> class for <see cref="string"/>
 ///     generic type argument.
 /// </summary>
 public class EnumerableExtensionsTestsForString : EnumerableExtensionsSpecification<string>
