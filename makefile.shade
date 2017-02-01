@@ -1,11 +1,13 @@
+use namespace="System"
 use namespace="System.IO"
+use namespace="System.Collections.Generic"
+use import="Files"
 
 var Configuration='Release'
 
 default BASE_DIR='${Directory.GetCurrentDirectory()}'
 default TARGET_DIR='${Path.Combine(BASE_DIR, "artifacts")}'
 default BUILD_DIR='${Path.Combine(TARGET_DIR, "build")}'
-default SPEC_PROJECT_GLOB = "spec/*/project.json"
 default TEST_PROJECT_GLOB = "test/*/project.json"
 
 use-standard-lifecycle

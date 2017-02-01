@@ -1,10 +1,10 @@
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="ObjectExtensionsSpecification{T}.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
 //     See License.txt in the project root for full license information.
 // </copyright>
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace Leet.Specifications
 {
@@ -87,7 +87,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object,string)"/> method returns same result
+        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object, string)"/> method returns same result
         ///     as <see cref="object.ToString"/> for non-<see langword="null"/> references.
         /// </summary>
         /// <param name="sut">
@@ -114,7 +114,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object,string)"/> method returns <see langword="null"/>
+        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object, string)"/> method returns <see langword="null"/>
         ///     for <see langword="null"/> reference and <see langword="null"/> representation.
         /// </summary>
         [Fact]
@@ -134,7 +134,7 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object,string)"/> method returns result same as
+        ///     Checks whether <see cref="ObjectExtensions.ToStringAllowNull(object, string)"/> method returns result same as
         ///     <see cref="object.ToString"/> for non-<see langword="null"/> reference and <see langword="null"/> representation.
         /// </summary>
         /// <param name="sut">

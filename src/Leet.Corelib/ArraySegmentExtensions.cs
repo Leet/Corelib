@@ -1,10 +1,10 @@
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="ArraySegmentExtensions.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
 //     See License.txt in the project root for full license information.
 // </copyright>
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace Leet
 {
@@ -37,6 +37,7 @@ namespace Leet
             {
                 yield break;
             }
+
             int limit = segment.Offset + segment.Count;
             for (int i = segment.Offset; i < limit; ++i)
             {

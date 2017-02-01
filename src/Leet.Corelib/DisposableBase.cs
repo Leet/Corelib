@@ -1,10 +1,10 @@
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="DisposableBase.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
 //     See License.txt in the project root for full license information.
 // </copyright>
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace Leet
 {
@@ -51,7 +51,9 @@ namespace Leet
         /// <summary>
         ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly",
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1063:ImplementIDisposableCorrectly",
             Justification = "Pattern maintained with a value that tracks the disposition state.")]
         public void Dispose()
         {
@@ -106,7 +108,7 @@ namespace Leet
         private bool MarkAsDisposed()
         {
             Contract.Ensures(this.IsDisposed);
-            
+
             bool result = Interlocked.Exchange(ref this.isDisposed, 1) == 1;
             Contract.Assume(this.isDisposed == 1);
             return result;

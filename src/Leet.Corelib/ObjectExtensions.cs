@@ -1,10 +1,10 @@
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="ObjectExtensions.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
 //     See License.txt in the project root for full license information.
 // </copyright>
-//-----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace Leet
 {
@@ -13,7 +13,7 @@ namespace Leet
     using System.Diagnostics.Contracts;
 
     /// <summary>
-    ///     A <see langword="static"/> class that contains extension methods for <see cref="Object"/> type.
+    ///     A <see langword="static"/> class that contains extension methods for <see cref="object"/> type.
     /// </summary>
     public static class ObjectExtensions
     {

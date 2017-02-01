@@ -19,7 +19,20 @@
   "buildOptions": {
     "keyFile": "../../tools/Leet.snk",
     "xmlDoc": true,
-    "warningsAsErrors": true
+    "additionalArguments": [ "/ruleset:../../CodeAnalysis.ruleset", "/additionalfile:../../StyleCop.json" ]
+  },
+
+  "configurations": {
+    "Debug": {
+      "buildOptions": {
+        "warningsAsErrors": false
+      }
+    },
+    "Release": {
+      "buildOptions": {
+        "warningsAsErrors": true
+      }
+    }
   },
 
   "frameworks": {
@@ -38,7 +51,11 @@
     "AutoFixture": "3.50.1",
     "AutoFixture.AutoNSubstitute": "3.50.1",
     "AutoFixture.Xunit2": "3.50.1",
-    "dotnet-test-xunit": "2.2.0-*"
+    "dotnet-test-xunit": "2.2.0-*",
+    "StyleCop.Analyzers": {
+      "version": "1.0.0",
+      "type": "build"
+    }
   },
 
   "testRunner": "xunit"
