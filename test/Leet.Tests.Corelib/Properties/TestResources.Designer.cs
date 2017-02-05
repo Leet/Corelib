@@ -87,6 +87,24 @@ namespace Leet.Properties {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Maximum exclusive count range must be greater than minimum inclusive count range..
+        /// </summary>
+        public static string Exceptions_ArgumentOutOfRange_MaximumExclusiveCountRangeLessThanOrEqualToMinimum {
+            get {
+                return ResourceManager.GetString("Exceptions_ArgumentOutOfRange_MaximumExclusiveCountRangeLessThanOrEqualToMinimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Minimum inclusive count range cannot be less than zero..
+        /// </summary>
+        public static string Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative {
+            get {
+                return ResourceManager.GetString("Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Interface method is not supported for this object..
         /// </summary>
         public static string Exceptions_NotSupported_InterfaceMethod {

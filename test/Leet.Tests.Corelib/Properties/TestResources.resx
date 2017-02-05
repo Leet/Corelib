@@ -129,4 +129,10 @@
   <data name="Exception_InvalidOperation_NoExpectedException" xml:space="preserve">
     <value>Expected exception has not been thrown.</value>
   </data>
+  <data name="Exceptions_ArgumentOutOfRange_MaximumExclusiveCountRangeLessThanOrEqualToMinimum" xml:space="preserve">
+    <value>Maximum exclusive count range must be greater than minimum inclusive count range.</value>
+  </data>
+  <data name="Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative" xml:space="preserve">
+    <value>Minimum inclusive count range cannot be less than zero.</value>
+  </data>
 </root>

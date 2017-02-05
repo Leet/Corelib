@@ -75,7 +75,6 @@ namespace Leet.Specifications
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        [AutoDomainData]
         public void Iterate_IEnumerableOfT_Always_VisitsAllElements(int collectionSize)
         {
             // Fixture setup
@@ -449,6 +448,780 @@ namespace Leet.Specifications
 
             // Verify outcome
             Assert.True(result.Skip(insertAt + 1).SequenceEqual(source.Skip(insertAt)));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method throws
+        ///     an <see cref="ArgumentNullException"/> when called with <see langword="null"/> collection.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNullCollections_Throws()
+        {
+            // Fixture setup
+            IEnumerable<IEnumerable<T>> collection = null;
+
+            // Exercise system
+            // Verify outcome
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                collection.CartesianProduct();
+            });
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always returns
+        ///     non-<see langword="null"/> collection.
+        /// </summary>
+        /// <param name="collection">
+        ///     An enumerable collection of the source sequences for the cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_ReturnsNotNull(IEnumerable<IEnumerable<T>> collection)
+        {
+            // Fixture setup
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.NotNull(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method iterates collection eagerly.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_EvaluatesEagerly()
+        {
+            // Fixture setup
+            var collection = Substitute.For<IEnumerable<IEnumerable<T>>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            collection.Received(1).GetEnumerator();
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method iterates
+        ///     each collection item eagerly.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableIfT_Always_EvaluatesEagerlyForEachCollection()
+        {
+            // Fixture setup
+            var collection = Substitute.For<IEnumerable<IEnumerable<T>>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.All(collection, item => item.Received(1).GetEnumerator());
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method returns collection
+        ///     which iteration is not using source collection enumerator.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_ReturnsIndependentCollection()
+        {
+            // Fixture setup
+            var collection = Substitute.For<IEnumerable<IEnumerable<T>>>();
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+            collection.ClearReceivedCalls();
+
+            // Exercise system
+            result.Iterate();
+
+            // Verify outcome
+            collection.DidNotReceive().GetEnumerator();
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always returns
+        ///     a new collection each time called.
+        /// </summary>
+        /// <param name="collection">
+        ///     An enumerable collection of the source sequences for the cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_ReturnsNewCollection(IEnumerable<IEnumerable<T>> collection)
+        {
+            // Fixture setup
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> first = collection.CartesianProduct();
+            IEnumerable<IEnumerable<T>> second = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.NotSame(first, second);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method returns
+        ///     an empty collection when called with empty collection.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForEmptyCollection_ReturnsEmptyCollection()
+        {
+            // Fixture setup
+            IEnumerable<IEnumerable<T>> empty = Enumerable.Empty<IEnumerable<T>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = empty.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(!result.Any());
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method returns
+        ///     an empty collection when at least one source collection is empty.
+        /// </summary>
+        /// <param name="collectionSize">
+        ///     Size of the collection to be tested.
+        /// </param>
+        /// <param name="emptyCollectionIndex">
+        ///     Index in the collection at which an empty collection item shall be located.
+        /// </param>
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(2, 0)]
+        [InlineData(2, 1)]
+        [InlineData(3, 0)]
+        [InlineData(3, 1)]
+        [InlineData(3, 2)]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_WithEmptyCollectionElement_ReturnsEmptyCollection(int collectionSize, int emptyCollectionIndex)
+        {
+            // Fixture setup
+            var fixture = new DomainFixture();
+            IEnumerable<IEnumerable<T>> collection = fixture.CreateMany<IEnumerable<T>>(collectionSize - 1);
+            IEnumerable<IEnumerable<T>> collectionWithEmptyCollectionElement = collection.Insert(emptyCollectionIndex, Enumerable.Empty<T>());
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collectionWithEmptyCollectionElement.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(!result.Any());
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method returns
+        ///     a collection of singletons (<see cref="IEnumerable{T}"/> with one element) when called with one collection.
+        /// </summary>
+        /// <param name="collectionElement">
+        ///     A collection to produce cartesian product from.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForOneCollection_ReturnsSingletonsOfElements(IEnumerable<T> collectionElement)
+        {
+            // Fixture setup
+            var collection = new[] { collectionElement };
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(result.Select(item => item.Single()).SequenceEqual(collectionElement));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always returns
+        ///     a same collection.
+        /// </summary>
+        /// <param name="collection">
+        ///     An enumerable collection of the source sequences for the cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_ReturnsSameResult(IEnumerable<IEnumerable<T>> collection)
+        {
+            // Fixture setup
+            SequenceEqualityComparer<T> itemComparer = new SequenceEqualityComparer<T>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> first = collection.CartesianProduct();
+            IEnumerable<IEnumerable<T>> second = collection.CartesianProduct();
+            IEnumerable<IEnumerable<T>> third = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(first.SequenceEqual(second, itemComparer));
+            Assert.True(second.SequenceEqual(third, itemComparer));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always returns
+        ///     a collection with a size equal to multiplication of all source collection sizes.
+        /// </summary>
+        /// <param name="collectionCount">
+        ///     Number of collections to produce cartesian product.
+        /// </param>
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCorrectNumberOfItemsInCollection(int collectionCount)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            fixture.Customizations.Add(new RandomMultipleRelay());
+            var collection = fixture.CreateMany<IEnumerable<T>>(collectionCount);
+            var expectedNumberOfItems = collection.Aggregate(1, (acc, item) => acc * item.Count());
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.Equal(expectedNumberOfItems, result.Count());
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always returns
+        ///     a collection with items of size equal to source collection's count.
+        /// </summary>
+        /// <param name="collectionCount">
+        ///     Number of collections to produce cartesian product.
+        /// </param>
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCollectionWithItemsOfCorrectSize(int collectionCount)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            fixture.Customizations.Add(new RandomMultipleRelay());
+            var collection = fixture.CreateMany<IEnumerable<T>>(collectionCount);
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(result.All(item => item.Count() == collectionCount));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method always add each item of a new
+        ///     source collection to each item of previous result.
+        /// </summary>
+        /// <param name="collections">
+        ///     An enumerable collection of the source sequences for the cartesian product.
+        /// </param>
+        /// <param name="newCollection">
+        ///     A new collection item which addition shall be examined.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_AddsEachNewItemToEachPreviousResultItems(IEnumerable<IEnumerable<T>> collections, IEnumerable<T> newCollection)
+        {
+            // Fixture setup
+            IEnumerable<IEnumerable<T>> baseResult = collections.CartesianProduct();
+            var expectedResult = baseResult.SelectMany(baseResultItem =>
+                newCollection.Select(newItem =>
+                    baseResultItem.Insert(baseResultItem.Count(), newItem)));
+            var appendedCollection = collections.Insert(collections.Count(), newCollection);
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> appendedResult = appendedCollection.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(appendedResult.SequenceEqual(expectedResult, new SequenceEqualityComparer<T>()));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> method returns correct result.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCorrectResult()
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            T[][] collections = new[]
+            {
+                fixture.CreateMany<T>(2).ToArray(),
+                fixture.CreateMany<T>(1).ToArray(),
+                fixture.CreateMany<T>(3).ToArray()
+            };
+            T[][] expectedResult = new[]
+            {
+                new[]
+                {
+                    collections[0][0], collections[1][0], collections[2][0]
+                },
+                new[]
+                {
+                    collections[0][0], collections[1][0], collections[2][1]
+                },
+                new[]
+                {
+                    collections[0][0], collections[1][0], collections[2][2]
+                },
+                new[]
+                {
+                    collections[0][1], collections[1][0], collections[2][0]
+                },
+                new[]
+                {
+                    collections[0][1], collections[1][0], collections[2][1]
+                },
+                new[]
+                {
+                    collections[0][1], collections[1][0], collections[2][2]
+                },
+            };
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collections.CartesianProduct();
+
+            // Verify outcome
+            Assert.True(expectedResult.SequenceEqual(result, new SequenceEqualityComparer<T>()));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method throws
+        ///     an <see cref="ArgumentNullException"/> when called with <see langword="null"/> as first argument.
+        /// </summary>
+        /// <param name="second">
+        ///     A collection that shall be passed as a second parameter to <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/>
+        ///     method.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_ForFirstNullCollection_Throws(IEnumerable<T> second)
+        {
+            // Fixture setup
+            IEnumerable<T> first = null;
+
+            // Exercise system
+            // Verify outcome
+            Assert.Throws<ArgumentNullException>(nameof(first), () =>
+            {
+                first.CartesianProduct(second);
+            });
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method throws
+        ///     an <see cref="ArgumentNullException"/> when called with <see langword="null"/> as second argument.
+        /// </summary>
+        /// <param name="first">
+        ///     A collection that shall be passed as a first parameter to <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/>
+        ///     method.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_ForSecondNullCollection_Throws(IEnumerable<T> first)
+        {
+            // Fixture setup
+            IEnumerable<T> second = null;
+
+            // Exercise system
+            // Verify outcome
+            Assert.Throws<ArgumentNullException>(nameof(second), () =>
+            {
+                first.CartesianProduct(second);
+            });
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method returns
+        ///     non-<see langword="null"/> result.
+        /// </summary>
+        /// <param name="first">
+        ///     A collection that shall be passed as a first parameter to <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/>
+        ///     method.
+        /// </param>
+        /// <param name="second">
+        ///     A collection that shall be passed as a second parameter to <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/>
+        ///     method.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_Always_ReturnsNotNull(IEnumerable<T> first, IEnumerable<T> second)
+        {
+            // Fixture setup
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            Assert.NotNull(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method always lazily enumerates
+        ///     first collection.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_Always_EnumeratesFirstCollectionLazily()
+        {
+            // Fixture setup
+            var first = Substitute.For<IEnumerable<T>>();
+            var second = Substitute.For<IEnumerable<T>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            first.DidNotReceive().GetEnumerator();
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method always lazily enumerates
+        ///     second collection.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_Always_EnumeratesSecondCollectionLazily()
+        {
+            // Fixture setup
+            var first = Substitute.For<IEnumerable<T>>();
+            var second = Substitute.For<IEnumerable<T>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            second.DidNotReceive().GetEnumerator();
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method always returns
+        ///     a new collection instance.
+        /// </summary>
+        /// <param name="first">
+        ///     A first enumerable collection for cartesian product.
+        /// </param>
+        /// <param name="second">
+        ///     A second enumerable collection for cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_Always_ReturnsNewCollection(IEnumerable<T> first, IEnumerable<T> second)
+        {
+            // Fixture setup
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> firstResult = first.CartesianProduct(second);
+            IEnumerable<IEnumerable<T>> secondResult = first.CartesianProduct(second);
+
+            // Verify outcome
+            Assert.NotSame(first, second);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method returns
+        ///     an empty collection when called with empty collection as first argument.
+        /// </summary>
+        /// <param name="second">
+        ///     A second enumerable collection for cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_ForFirstEmptyCollection_ReturnsEmptyResult(IEnumerable<T> second)
+        {
+            // Fixture setup
+            IEnumerable<T> first = Enumerable.Empty<T>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            Assert.Empty(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method returns
+        ///     an empty collection when called with empty collection as second argument.
+        /// </summary>
+        /// <param name="first">
+        ///     A second enumerable collection for cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_ForSecondEmptyCollection_ReturnsEmptyResult(IEnumerable<T> first)
+        {
+            // Fixture setup
+            IEnumerable<T> second = Enumerable.Empty<T>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            Assert.Empty(result);
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},IEnumerable{T})"/> method returns
+        ///     same collection as <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> overload.
+        /// </summary>
+        /// <param name="first">
+        ///     A first enumerable collection for cartesian product.
+        /// </param>
+        /// <param name="second">
+        ///     A second enumerable collection for cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_IEnumerableOfT_Always_ConformsWithIEnumerableOfIEnumerableOfT(IEnumerable<T> first, IEnumerable<T> second)
+        {
+            // Fixture setup
+            IEnumerable<IEnumerable<T>> collections = new[] { first, second };
+            IEnumerable<IEnumerable<T>> expectedResult = collections.CartesianProduct();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = first.CartesianProduct(second);
+
+            // Verify outcome
+            Assert.True(expectedResult.SequenceEqual(result, new SequenceEqualityComparer<T>()));
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method throws
+        ///     an <see cref="ArgumentNullException"/> when called with <see langword="null"/> collection.
+        /// </summary>
+        /// <param name="power">
+        ///     A power of the cartesian product to request.
+        /// </param>
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(-1)]
+        [InlineData(int.MinValue)]
+        public void CartesianProduct_IEnumerableOfT_Int32_ForNullCollection_ThrowsException(int power)
+        {
+            // Fixture setup
+            IEnumerable<T> collection = null;
+
+            // Exercise system
+            // Verify outcome
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                collection.CartesianProduct(power);
+            });
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method throws
+        ///     an <see cref="ArgumentOutOfRangeException"/> when called with negative power.
+        /// </summary>
+        /// <param name="power">
+        ///     A power of the cartesian product to request.
+        /// </param>
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(int.MinValue)]
+        public void CartesianProduct_IEnumerableOfT_Int32_ForNegativePower_ThrowsException(int power)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            var collection = fixture.CreateMany<T>();
+
+            // Exercise system
+            // Verify outcome
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                collection.CartesianProduct(power);
+            });
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method always return
+        ///     non-<see langword="null"/> collection.
+        /// </summary>
+        /// <param name="power">
+        ///     A power of the cartesian product to request.
+        /// </param>
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void CartesianProduct_IEnumerableOfT_Int32_Always_ReturnsNotNull(int power)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            var collection = fixture.CreateMany<T>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct(power);
+
+            // Verify outcome
+            Assert.NotNull(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method always calculates
+        ///     result eagerly.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfT_Int32_Always_EvaluatesEagerly()
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            var collection = Substitute.For<IEnumerable<T>>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct(fixture.RepeatCount);
+
+            // Verify outcome
+            collection.Received(1).GetEnumerator();
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method always
+        ///     returns new collection instance.
+        /// </summary>
+        /// <param name="collection">
+        ///     A source collection for the cartesian product.
+        /// </param>
+        /// <param name="power">
+        ///     A power of the cartesian product to request.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_Int32_Always_ReturnsNewCollection(IEnumerable<T> collection, int power)
+        {
+            // Fixture setup
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> first = collection.CartesianProduct(power);
+            IEnumerable<IEnumerable<T>> second = collection.CartesianProduct(power);
+
+            // Verify outcome
+            Assert.NotSame(first, second);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method returns empty collection
+        ///     when called with zero power.
+        /// </summary>
+        [Fact]
+        public void CartesianProduct_IEnumerableOfT_Int32_ForZeroPower_ReturnsEmptyCollection()
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            var collection = fixture.CreateMany<T>();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct(0);
+
+            // Verify outcome
+            Assert.Empty(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method returns empty collection
+        ///     when called with empty collection.
+        /// </summary>
+        /// <param name="power">
+        ///     A power of the cartesian product to request.
+        /// </param>
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void CartesianProduct_IEnumerableOfT_Int32_ForEmptyCollection_ReturnsEmptyCollection(int power)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            var collection = fixture.CreateMany<T>(0);
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct(power);
+
+            // Verify outcome
+            Assert.Empty(result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{T},int)"/> method returns
+        ///     same collection as <see cref="EnumerableExtensions.CartesianProduct{T}(IEnumerable{IEnumerable{T}})"/> overload.
+        /// </summary>
+        /// <param name="collection">
+        ///     A source collection for the cartesian product.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void CartesianProduct_IEnumerableOfT_Int32_Always_ConformsWithGeneralOverload(IEnumerable<T> collection)
+        {
+            // Fixture setup
+            IFixture fixture = new DomainFixture();
+            IEnumerable<IEnumerable<T>> collections = Enumerable.Repeat(collection, fixture.RepeatCount);
+            IEnumerable<IEnumerable<T>> expectedResult = collections.CartesianProduct();
+
+            // Exercise system
+            IEnumerable<IEnumerable<T>> result = collection.CartesianProduct(fixture.RepeatCount);
+
+            // Verify outcome
+            Assert.True(expectedResult.SequenceEqual(result, new SequenceEqualityComparer<T>()));
 
             // Teardown
         }
