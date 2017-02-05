@@ -10,6 +10,7 @@ namespace Leet
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
     /// <summary>
@@ -44,6 +45,9 @@ namespace Leet
         /// </exception>
         public SequenceEqualityComparer(IEqualityComparer<T> itemComparer)
         {
+            Contract.Requires(!object.ReferenceEquals(itemComparer, null));
+            Contract.Ensures(object.ReferenceEquals(this.ItemComparer, itemComparer));
+
             if (object.ReferenceEquals(itemComparer, null))
             {
                 throw new ArgumentNullException(nameof(itemComparer));

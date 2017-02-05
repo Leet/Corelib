@@ -41,9 +41,6 @@ namespace Leet
         {
             get
             {
-                Contract.Ensures(Contract.Result<bool>() == (this.isDisposed == 1));
-                Contract.Ensures(this.isDisposed == Contract.OldValue(this.isDisposed));
-
                 return this.isDisposed == 1;
             }
         }
@@ -109,9 +106,7 @@ namespace Leet
         {
             Contract.Ensures(this.IsDisposed);
 
-            bool result = Interlocked.Exchange(ref this.isDisposed, 1) == 1;
-            Contract.Assume(this.isDisposed == 1);
-            return result;
+            return Interlocked.Exchange(ref this.isDisposed, 1) == 1;
         }
 
         /// <summary>

@@ -9,6 +9,7 @@
 namespace Leet
 {
     using System;
+    using System.Diagnostics.Contracts;
     using Ploeh.AutoFixture.Kernel;
     using Properties;
 
@@ -48,6 +49,9 @@ namespace Leet
         /// </exception>
         public RandomMultipleRelay(int minInclusiveCount, int maxExclusiveCount)
         {
+            Contract.Requires(minInclusiveCount >= 0);
+            Contract.Requires(minInclusiveCount < maxExclusiveCount);
+
             if (minInclusiveCount < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(minInclusiveCount), minInclusiveCount, TestResources.Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative);
@@ -106,8 +110,13 @@ namespace Leet
         ///     The requested specimens if possible;
         ///     otherwise a <see cref="NoSpecimen" /> instance.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="context"/> is <see langword="null"/>.
+        /// </exception>
         public object Create(object request, ISpecimenContext context)
         {
+            Contract.Requires(context != null);
+
             if (object.ReferenceEquals(context, null))
             {
                 throw new ArgumentNullException(nameof(context));

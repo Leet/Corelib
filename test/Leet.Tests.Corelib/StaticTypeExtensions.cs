@@ -9,7 +9,7 @@
 namespace Leet
 {
     using System;
-    using System.Linq;
+    using System.Diagnostics.Contracts;
     using System.Reflection;
     using Properties;
 
@@ -34,8 +34,26 @@ namespace Leet
         /// <returns>
         ///     Method invocation return value.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="target"/> is <see langword="null"/>.
+        ///     <para>-OR-</para>
+        ///     <paramref name="name"/> is <see langword="null"/>.
+        /// </exception>
         public static object InvokePublicMethod(this Type target, string name, params object[] args)
         {
+            Contract.Requires(!object.ReferenceEquals(target, null));
+            Contract.Requires(!object.ReferenceEquals(name, null));
+
+            if (object.ReferenceEquals(target, null))
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (object.ReferenceEquals(name, null))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
             return target.InvokeMember(name, BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, Type.DefaultBinder, null, args);
         }
 
@@ -55,8 +73,29 @@ namespace Leet
         /// <returns>
         ///     An exception thrown during the invokation.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="target"/> is <see langword="null"/>.
+        ///     <para>-OR-</para>
+        ///     <paramref name="name"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Expected exception has not been thrown.
+        /// </exception>
         public static Exception InvokePublicMethodWithException(this Type target, string name, params object[] args)
         {
+            Contract.Requires(!object.ReferenceEquals(target, null));
+            Contract.Requires(!object.ReferenceEquals(name, null));
+
+            if (object.ReferenceEquals(target, null))
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (object.ReferenceEquals(name, null))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
             try
             {
                 target.InvokeMember(name, BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, Type.DefaultBinder, null, args);
