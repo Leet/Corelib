@@ -41,3 +41,4 @@
 *.cs                   csharp
 *.snk                  binary
 *.public               binary
+*.ruleset              xml
