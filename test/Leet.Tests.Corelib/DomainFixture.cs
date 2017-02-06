@@ -13,7 +13,7 @@ namespace Leet
     /// <summary>
     ///     Provides anonymous object creation services with an additional knowledge of the current problem domain.
     /// </summary>
-    public class DomainFixture : Fixture
+    internal class DomainFixture : Fixture
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="DomainFixture"/> class.

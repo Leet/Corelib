@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Rules for ClassLibrary1" Description="Code analysis rules for ClassLibrary1.csproj." ToolsVersion="14.0">
+<RuleSet Name="Rules for Leet projects." Description="Code analysis rules for used in all Leet projects." ToolsVersion="14.0">
   <Include Path="allrules.ruleset" Action="Default" />
   <Include Path="basiccorrectnessrules.ruleset" Action="Default" />
   <Include Path="basicdesignguidelinerules.ruleset" Action="Default" />
