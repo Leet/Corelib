@@ -173,6 +173,30 @@ namespace Leet.Specifications
         }
 
         /// <summary>
+        ///     Checks whether <typeparamref name="TSut"/> type implements static <c>Compare</c> method for
+        ///     comparison of two instances of <typeparamref name="T"/> type.
+        /// </summary>
+        [Fact]
+        public void Type_Implements_StaticMethod_Compare_T_T()
+        {
+            // Fixture setup
+            string methodName = "Compare";
+            BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
+            Type[] paraeterTypes = new Type[]
+            {
+                typeof(T), typeof(T)
+            };
+
+            // Exercise system
+            MethodInfo operatorMethod = typeof(TSut).GetMethod(methodName, flags, Type.DefaultBinder, paraeterTypes, null);
+
+            // Verify outcome
+            Assert.Equal(typeof(int), operatorMethod.ReturnType);
+
+            // Teardown
+        }
+
+        /// <summary>
         ///     Checks whether GreaterThan operator called with same instance
         ///     returns <see langword="false"/>.
         /// </summary>
@@ -436,6 +460,96 @@ namespace Leet.Specifications
 
             // Verify outcome
             Assert.True(!object.ReferenceEquals(other, null) || !result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether the static <c>Compare</c> method returns 0 when called with same instance as both parameters.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void StaticCompare_T_T_CalledWithSameInstance_ReturnsZero(TSut sut)
+        {
+            // Fixture setup
+
+            // Exercise system
+            int result = (int)typeof(TSut).InvokePublicMethod("Compare", sut, sut);
+
+            // Verify outcome
+            Assert.Equal(0, result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="IComparable{T}.CompareTo(T)"/> method when called with <see langword="null"/>
+        ///     reference as a first paramter returns 1.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void StaticCompare_T_T_CalledWithNullAsFirstParameter_ReturnsOne(TSut sut)
+        {
+            // Fixture setup
+            TSut other = default(TSut);
+
+            // Exercise system
+            int result = (int)typeof(TSut).InvokePublicMethod("Compare", other, sut);
+
+            // Verify outcome
+            Assert.True(!object.ReferenceEquals(other, null) || result == 1);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="IComparable{T}.CompareTo(T)"/> method when called with <see langword="null"/>
+        ///     reference as second parameter returns 1.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void StaticCompare_T_T_CalledWithNullAsSecondParameter_ReturnsOne(TSut sut)
+        {
+            // Fixture setup
+            TSut other = default(TSut);
+
+            // Exercise system
+            int result = (int)typeof(TSut).InvokePublicMethod("Compare", sut, other);
+
+            // Verify outcome
+            Assert.True(!object.ReferenceEquals(other, null) || result == 1);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="IComparable{T}.CompareTo(T)"/> method when called with both <see langword="null"/>
+        ///     reference parameters returns 0.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void StaticCompare_T_T_CalledWithBothNullParameters_ReturnsZero(TSut sut)
+        {
+            // Fixture setup
+            TSut other = default(TSut);
+
+            // Exercise system
+            int result = (int)typeof(TSut).InvokePublicMethod("Compare", other, other);
+
+            // Verify outcome
+            Assert.True(!object.ReferenceEquals(other, null) || result == 0);
 
             // Teardown
         }

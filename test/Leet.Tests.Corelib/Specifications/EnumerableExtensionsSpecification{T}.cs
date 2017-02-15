@@ -78,7 +78,7 @@ namespace Leet.Specifications
         public void Iterate_IEnumerableOfT_Always_VisitsAllElements(int collectionSize)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
             IEnumerator<T> sourceEnumerator = source.GetEnumerator();
 
@@ -104,7 +104,7 @@ namespace Leet.Specifications
         public void Iterate_IEnumerableOfT_Always_CallDispose()
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>();
             IEnumerator<T> sourceEnumerator = source.GetEnumerator();
 
@@ -166,7 +166,7 @@ namespace Leet.Specifications
         public void Insert_IEnumerableOfT_Int32_T_CalledWithIndexLessThanZero_Throws(int collectionSize, int insertAt)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
             T newItem = fixture.Create<T>();
 
@@ -198,7 +198,7 @@ namespace Leet.Specifications
         public void Insert_IEnumerableOfT_Int32_T_CalledWithIndexGreaterThanCollectionSizePlusOne_DeffersThrow(int collectionSize, int insertAt)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             T newItem = fixture.Create<T>();
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
 
@@ -261,7 +261,7 @@ namespace Leet.Specifications
         public void Insert_IEnumerableOfT_Int32_T_IntoCollection_ReturnsNotNullCollection(int collectionSize, int insertAt)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
             T newItem = fixture.Create<T>();
             int expectedCollectionSize = collectionSize + 1;
@@ -296,7 +296,7 @@ namespace Leet.Specifications
         public void Insert_IEnumerableOfT_Int32_T_IntoCollection_CreatesNewCollection(int collectionSize, int insertAt)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
             T newItem = fixture.Create<T>();
             int expectedCollectionSize = collectionSize + 1;
@@ -332,7 +332,7 @@ namespace Leet.Specifications
         public void Insert_IEnumerableOfT_Int32_T_IntoCollection_AddsOnlyOneItem(int collectionSize, int insertAt)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> source = fixture.CreateMany<T>(collectionSize);
             T newItem = fixture.Create<T>();
             int expectedCollectionSize = collectionSize + 1;
@@ -614,7 +614,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfIEnumerableOfT_WithEmptyCollectionElement_ReturnsEmptyCollection(int collectionSize, int emptyCollectionIndex)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<IEnumerable<T>> collection = fixture.CreateMany<IEnumerable<T>>(collectionSize - 1);
             IEnumerable<IEnumerable<T>> collectionWithEmptyCollectionElement = collection.Insert(emptyCollectionIndex, Enumerable.Empty<T>());
 
@@ -690,7 +690,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCorrectNumberOfItemsInCollection(int collectionCount)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             fixture.Customizations.Add(new RandomMultipleRelay());
             var collection = fixture.CreateMany<IEnumerable<T>>(collectionCount);
             var expectedNumberOfItems = collection.Aggregate(1, (acc, item) => acc * item.Count());
@@ -718,7 +718,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCollectionWithItemsOfCorrectSize(int collectionCount)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             fixture.Customizations.Add(new RandomMultipleRelay());
             var collection = fixture.CreateMany<IEnumerable<T>>(collectionCount);
 
@@ -768,7 +768,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfIEnumerableOfT_ForNonEmptyCollection_ReturnsCorrectResult()
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             T[][] collections = new[]
             {
                 fixture.CreateMany<T>(2).ToArray(),
@@ -1068,7 +1068,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_ForNegativePower_ThrowsException(int power)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var collection = fixture.CreateMany<T>();
 
             // Exercise system
@@ -1096,7 +1096,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_Always_ReturnsNotNull(int power)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var collection = fixture.CreateMany<T>();
 
             // Exercise system
@@ -1116,7 +1116,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_Always_EvaluatesEagerly()
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var collection = Substitute.For<IEnumerable<T>>();
 
             // Exercise system
@@ -1162,7 +1162,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_ForZeroPower_ReturnsEmptyCollection()
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var collection = fixture.CreateMany<T>();
 
             // Exercise system
@@ -1189,7 +1189,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_ForEmptyCollection_ReturnsEmptyCollection(int power)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var collection = fixture.CreateMany<T>(0);
 
             // Exercise system
@@ -1213,7 +1213,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfT_Int32_Always_ConformsWithGeneralOverload(IEnumerable<T> collection)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<IEnumerable<T>> collections = Enumerable.Repeat(collection, fixture.RepeatCount);
             IEnumerable<IEnumerable<T>> expectedResult = collections.CartesianProduct();
 

@@ -69,7 +69,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_ForFirstCollectionBeingSubcolectionOfSecond_ReturnsFalse(int collectionSize, int subcollectionSize)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             SequenceEqualityComparer<T> sut = fixture.Create<SequenceEqualityComparer<T>>();
             IEnumerable<T> collection = fixture.CreateMany<T>(collectionSize);
             IEnumerable<T> subcollection = collection.Take(subcollectionSize);
@@ -99,7 +99,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_ForSecondCollectionBeingSubcolectionOfFirst_ReturnsFalse(int collectionSize, int subcollectionSize)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             SequenceEqualityComparer<T> sut = fixture.Create<SequenceEqualityComparer<T>>();
             IEnumerable<T> collection = fixture.CreateMany<T>(collectionSize);
             IEnumerable<T> subcollection = collection.Take(subcollectionSize);
@@ -129,7 +129,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_Always_EvaluatesBasedOnItemComparer(int collectionsSize, int differentItemsIndex)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> first = fixture.CreateMany<T>(collectionsSize);
             IEnumerable<T> second = first.ToArray();
             int itemIndex = 0;
@@ -162,7 +162,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_Always_EvaluatesTillFirstDifference(int collectionsSize, int differentItemsIndex)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEnumerable<T> first = fixture.CreateMany<T>(collectionsSize);
             IEnumerable<T> second = first.ToArray();
             int itemIndex = 0;
@@ -191,7 +191,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_ForSameReferences_ReturnsTrue(IEnumerable<T> collection)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEqualityComparer<T> itemsComparer = fixture.Create<IEqualityComparer<T>>();
             itemsComparer.Equals(Arg.Any<T>(), Arg.Any<T>()).Returns(y => false);
             SequenceEqualityComparer<T> sut = new SequenceEqualityComparer<T>(itemsComparer);
@@ -215,7 +215,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_ForSameInstances_NeverComparesItems(IEnumerable<T> collection)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEqualityComparer<T> itemsComparer = fixture.Create<IEqualityComparer<T>>();
             itemsComparer.Equals(Arg.Any<T>(), Arg.Any<T>()).Returns(y => false);
             SequenceEqualityComparer<T> sut = new SequenceEqualityComparer<T>(itemsComparer);
@@ -241,7 +241,7 @@ namespace Leet.Specifications
         public void Equals_IEnumerableOfT_IEnumerableOfT_ForSameSequences_ReturnsAccordingToItemComparer(IEnumerable<T> collection)
         {
             // Fixture setup
-            IFixture fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IEqualityComparer<T> itemsComparer = fixture.Create<IEqualityComparer<T>>();
             itemsComparer.Equals(Arg.Any<T>(), Arg.Any<T>()).Returns(y => false);
             SequenceEqualityComparer<T> sut = new SequenceEqualityComparer<T>(itemsComparer);

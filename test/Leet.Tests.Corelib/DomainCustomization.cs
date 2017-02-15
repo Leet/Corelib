@@ -14,7 +14,7 @@ namespace Leet
     /// <summary>
     ///     Customizes an <see cref="IFixture"/> by using customizations related to current domain.
     /// </summary>
-    internal class DomainCustomization : CompositeCustomization
+    internal class DomainCustomization : DomainCustomizationBase
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="DomainCustomization"/> class.

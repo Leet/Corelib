@@ -135,4 +135,16 @@
   <data name="Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative" xml:space="preserve">
     <value>Minimum inclusive count range cannot be less than zero.</value>
   </data>
+  <data name="Exceptions_Argument_MultipleDomainFixtures" xml:space="preserve">
+    <value>Specified assembly defines more than one domain fixture type.</value>
+  </data>
+  <data name="Exceptions_Argument_NoDomainFixture" xml:space="preserve">
+    <value>Specified assembly does not define domain fixture type.</value>
+  </data>
+  <data name="Exception_InvalidOperation_FixtureAlreadyAssigned" xml:space="preserve">
+    <value>A fixture has been already assigned.</value>
+  </data>
+  <data name="Exception_InvalidOperation_NoFixtureAssigned" xml:space="preserve">
+    <value>Cannot use this objecct if no fixture is assigned to it.</value>
+  </data>
 </root>

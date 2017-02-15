@@ -38,7 +38,7 @@ namespace Leet.Specifications
         public void ToString_String_IFormatProvider_WithNullFormatProvider_ReturnsResult(string format)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             var sut = fixture.Create<TSut>();
 
             // Exercise system
@@ -62,7 +62,7 @@ namespace Leet.Specifications
         public void ToString_String_IFormatProvider_WithFormatProviderReturningNull_ReturnsResult(string format)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IFormatProvider formatProvider = fixture.Create<IFormatProvider>();
             formatProvider.GetFormat(Arg.Any<Type>()).Returns(null);
             var sut = fixture.Create<TSut>();
@@ -88,7 +88,7 @@ namespace Leet.Specifications
         public void ToString_String_IFormatProvider_WithCurrentCulture_ReturnsResult(string format)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IFormatProvider formatProvider = CultureInfo.CurrentCulture;
             var sut = fixture.Create<TSut>();
 
@@ -113,7 +113,7 @@ namespace Leet.Specifications
         public void ToString_String_IFormatProvider_WithDefaultFormat_BehavesAsG(string format)
         {
             // Fixture setup
-            var fixture = new DomainFixture();
+            IFixture fixture = DomainFixture.CreateFor(this);
             IFormatProvider formatProvider = fixture.Create<IFormatProvider>();
             formatProvider.GetFormat(Arg.Any<Type>()).Returns(null);
             string secondFormat = "G";
