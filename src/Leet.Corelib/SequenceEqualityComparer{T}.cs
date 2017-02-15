@@ -45,9 +45,6 @@ namespace Leet
         /// </exception>
         public SequenceEqualityComparer(IEqualityComparer<T> itemComparer)
         {
-            Contract.Requires(!object.ReferenceEquals(itemComparer, null));
-            Contract.Ensures(object.ReferenceEquals(this.ItemComparer, itemComparer));
-
             if (object.ReferenceEquals(itemComparer, null))
             {
                 throw new ArgumentNullException(nameof(itemComparer));
@@ -59,6 +56,7 @@ namespace Leet
         /// <summary>
         ///     Gets the collection item's equality comparer.
         /// </summary>
+        [Pure]
         public IEqualityComparer<T> ItemComparer
         {
             get
@@ -80,6 +78,7 @@ namespace Leet
         ///     <see langword="true"/> if the specified collections are equal;
         ///     otherwise, <see langword="false"/>.
         /// </returns>
+        [Pure]
         public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
         {
             if (object.ReferenceEquals(x, y))
@@ -108,6 +107,7 @@ namespace Leet
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="obj"/> is <see langword="null"/>.
         /// </exception>
+        [Pure]
         public int GetHashCode(IEnumerable<T> obj)
         {
             if (object.ReferenceEquals(obj, null))

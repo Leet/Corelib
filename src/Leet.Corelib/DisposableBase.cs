@@ -28,8 +28,6 @@ namespace Leet
         /// </summary>
         protected DisposableBase()
         {
-            Contract.Ensures(!this.IsDisposed);
-
             this.isDisposed = 0;
         }
 
@@ -54,8 +52,6 @@ namespace Leet
             Justification = "Pattern maintained with a value that tracks the disposition state.")]
         public void Dispose()
         {
-            Contract.Ensures(this.IsDisposed);
-
             if (!this.MarkAsDisposed())
             {
                 this.Dispose(true);
@@ -72,9 +68,6 @@ namespace Leet
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            Contract.Requires(this.IsDisposed);
-            Contract.Ensures(this.IsDisposed);
-            Contract.Ensures(this.IsDisposed == Contract.OldValue(this.IsDisposed));
         }
 
         /// <summary>
@@ -86,10 +79,6 @@ namespace Leet
         [Pure]
         protected void ThrowIfDisposed()
         {
-            Contract.Ensures(!this.IsDisposed);
-            Contract.Ensures(this.IsDisposed == Contract.OldValue(this.IsDisposed));
-            Contract.EnsuresOnThrow<ObjectDisposedException>(this.IsDisposed);
-
             if (this.IsDisposed)
             {
                 this.ThrowObjectDisposedException();
@@ -104,8 +93,6 @@ namespace Leet
         /// </returns>
         private bool MarkAsDisposed()
         {
-            Contract.Ensures(this.IsDisposed);
-
             return Interlocked.Exchange(ref this.isDisposed, 1) == 1;
         }
 
@@ -118,9 +105,6 @@ namespace Leet
         [Pure]
         private void ThrowObjectDisposedException()
         {
-            Contract.Ensures(false);
-            Contract.EnsuresOnThrow<ObjectDisposedException>(true);
-
             throw new ObjectDisposedException(this.GetType().FullName);
         }
     }

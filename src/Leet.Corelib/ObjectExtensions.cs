@@ -25,10 +25,9 @@ namespace Leet
         /// <returns>
         ///     A hash code of the specified object or 0 if the object is a <see langword="null"/> reference.
         /// </returns>
+        [Pure]
         public static int GetHashCodeAllowNull(this object obj)
         {
-            Contract.Ensures(!object.ReferenceEquals(obj, null) || Contract.Result<int>() == 0);
-
             if (object.ReferenceEquals(obj, null))
             {
                 return 0;
@@ -49,10 +48,9 @@ namespace Leet
         /// <returns>
         ///     A string that represents the specified object or specified string if the object is a <see langword="null"/> reference.
         /// </returns>
+        [Pure]
         public static string ToStringAllowNull(this object obj, string nullRepresentation)
         {
-            Contract.Ensures(!object.ReferenceEquals(obj, null) || object.ReferenceEquals(Contract.Result<string>(), nullRepresentation));
-
             if (object.ReferenceEquals(obj, null))
             {
                 return nullRepresentation;
@@ -70,10 +68,9 @@ namespace Leet
         /// <returns>
         ///     Type of the specified object or <see langword="null"/> if the object is a <see langword="null"/> reference.
         /// </returns>
+        [Pure]
         public static Type GetTypeAllowNull(this object value)
         {
-            Contract.Ensures(object.ReferenceEquals(Contract.Result<Type>(), null) == object.ReferenceEquals(value, null));
-
             if (object.ReferenceEquals(value, null))
             {
                 return null;

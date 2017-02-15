@@ -49,9 +49,6 @@ namespace Leet
         /// </exception>
         public RandomMultipleRelay(int minInclusiveCount, int maxExclusiveCount)
         {
-            Contract.Requires(minInclusiveCount >= 0);
-            Contract.Requires(minInclusiveCount < maxExclusiveCount);
-
             if (minInclusiveCount < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(minInclusiveCount), minInclusiveCount, TestResources.Exceptions_ArgumentOutOfRange_MinimumInclusiveCountRangeNegative);
@@ -115,8 +112,6 @@ namespace Leet
         /// </exception>
         public object Create(object request, ISpecimenContext context)
         {
-            Contract.Requires(context != null);
-
             if (object.ReferenceEquals(context, null))
             {
                 throw new ArgumentNullException(nameof(context));

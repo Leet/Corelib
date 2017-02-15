@@ -10,7 +10,6 @@ namespace Leet
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Linq;
     using Properties;
 
@@ -33,8 +32,6 @@ namespace Leet
         /// </exception>
         public static void Iterate<T>(this IEnumerable<T> source)
         {
-            Contract.Requires(!object.ReferenceEquals(source, null));
-
             if (object.ReferenceEquals(source, null))
             {
                 throw new ArgumentNullException(nameof(source));
@@ -79,15 +76,6 @@ namespace Leet
         /// </exception>
         public static IEnumerable<T> Insert<T>(this IEnumerable<T> source, int insertAt, T item)
         {
-            Contract.Requires(!object.ReferenceEquals(source, null));
-            Contract.Requires(insertAt >= 0);
-            Contract.Requires(insertAt <= source.Count());
-            Contract.Ensures(!object.ReferenceEquals(Contract.Result<IEnumerable<T>>(), null));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Count() == source.Count() + 1);
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Take(insertAt).SequenceEqual(source.Take(insertAt)));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().ElementAt(insertAt).Equals(item));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Skip(insertAt + 1).SequenceEqual(source.Skip(insertAt)));
-
             if (object.ReferenceEquals(source, null))
             {
                 throw new ArgumentNullException(nameof(source));
@@ -124,10 +112,6 @@ namespace Leet
         /// </exception>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<T> source, int power)
         {
-            Contract.Requires(!object.ReferenceEquals(source, null));
-            Contract.Requires(power >= 0);
-            Contract.Ensures(!object.ReferenceEquals(Contract.Result<IEnumerable<IEnumerable<T>>>(), null));
-
             if (object.ReferenceEquals(source, null))
             {
                 throw new ArgumentNullException(nameof(source));
@@ -163,10 +147,6 @@ namespace Leet
         /// </exception>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<T> first, IEnumerable<T> second)
         {
-            Contract.Requires(!object.ReferenceEquals(first, null));
-            Contract.Requires(!object.ReferenceEquals(second, null));
-            Contract.Ensures(!object.ReferenceEquals(Contract.Result<IEnumerable<IEnumerable<T>>>(), null));
-
             if (object.ReferenceEquals(first, null))
             {
                 throw new ArgumentNullException(nameof(first));
@@ -202,10 +182,6 @@ namespace Leet
         /// </exception>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<IEnumerable<T>> collections)
         {
-            Contract.Requires(!object.ReferenceEquals(collections, null));
-            Contract.Requires(Contract.ForAll(collections, collection => !object.ReferenceEquals(collection, null)));
-            Contract.Ensures(!object.ReferenceEquals(Contract.Result<IEnumerable<IEnumerable<T>>>(), null));
-
             if (object.ReferenceEquals(collections, null))
             {
                 throw new ArgumentNullException(nameof(collections));
@@ -259,15 +235,6 @@ namespace Leet
         /// </exception>
         private static IEnumerable<T> InsertCore<T>(this IEnumerable<T> source, int insertAt, T item)
         {
-            Contract.Requires(!object.ReferenceEquals(source, null));
-            Contract.Requires(insertAt >= 0);
-            Contract.Requires(insertAt <= source.Count());
-            Contract.Ensures(!object.ReferenceEquals(Contract.Result<IEnumerable<T>>(), null));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Count() == source.Count() + 1);
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Take(insertAt).SequenceEqual(source.Take(insertAt)));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().ElementAt(insertAt).Equals(item));
-            Contract.Ensures(Contract.Result<IEnumerable<T>>().Skip(insertAt + 1).SequenceEqual(source.Skip(insertAt)));
-
             int index = 0;
 
             foreach (T oldItem in source)

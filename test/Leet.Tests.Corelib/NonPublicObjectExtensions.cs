@@ -41,9 +41,6 @@ namespace Leet
         /// </exception>
         public static object InvokeProtectedMethod(this object target, string name, params object[] args)
         {
-            Contract.Requires(!object.ReferenceEquals(target, null));
-            Contract.Requires(!object.ReferenceEquals(name, null));
-
             if (object.ReferenceEquals(target, null))
             {
                 throw new ArgumentNullException(nameof(target));
@@ -89,9 +86,6 @@ namespace Leet
         /// </exception>
         public static Exception InvokeProtectedMethodWithException(this object target, string name, params object[] args)
         {
-            Contract.Requires(!object.ReferenceEquals(target, null));
-            Contract.Requires(!object.ReferenceEquals(name, null));
-
             if (object.ReferenceEquals(target, null))
             {
                 throw new ArgumentNullException(nameof(target));
@@ -140,9 +134,6 @@ namespace Leet
         /// </exception>
         public static object GetProtectedPropertyValue(this object target, string name)
         {
-            Contract.Requires(!object.ReferenceEquals(target, null));
-            Contract.Requires(!object.ReferenceEquals(name, null));
-
             if (object.ReferenceEquals(target, null))
             {
                 throw new ArgumentNullException(nameof(target));
@@ -184,9 +175,6 @@ namespace Leet
         /// </exception>
         public static Exception GetProtectedPropertyValueWithException(this object target, string name)
         {
-            Contract.Requires(!object.ReferenceEquals(target, null));
-            Contract.Requires(!object.ReferenceEquals(name, null));
-
             if (object.ReferenceEquals(target, null))
             {
                 throw new ArgumentNullException(nameof(target));
