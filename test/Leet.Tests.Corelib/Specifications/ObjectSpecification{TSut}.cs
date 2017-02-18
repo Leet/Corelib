@@ -82,6 +82,53 @@ namespace Leet.Specifications
         }
 
         /// <summary>
+        ///     Checks whether <see cref="object.Equals(object)"/> method returns same results no matter for which object it is beeing invoked.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        /// <param name="other">
+        ///     Other instance to compare ro.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void Equals_Object_ForSwappedInstances_ReturnsSameResult(TSut sut, TSut other)
+        {
+            // Fixture setup
+            bool expectedResult = other.Equals(sut);
+
+            // Exercise system
+            bool result = sut.Equals(other);
+
+            // Verify outcome
+            Assert.Equal(expectedResult, result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <see cref="object.Equals(object)"/> returns <see langword="false"/> if called with plain object as a paremter.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
+        /// </param>
+        [Theory]
+        [AutoDomainData]
+        public void Equals_Object_ForDifferentType_ReturnsFalse(TSut sut)
+        {
+            // Fixture setup
+            object other = new object();
+
+            // Exercise system
+            bool result = sut.Equals(other);
+
+            // Verify outcome
+            Assert.False(result);
+
+            // Teardown
+        }
+
+        /// <summary>
         ///     Checks whether <see cref="object.GetHashCode"/> method returns always the same value upon subsequent calls.
         /// </summary>
         /// <param name="sut">

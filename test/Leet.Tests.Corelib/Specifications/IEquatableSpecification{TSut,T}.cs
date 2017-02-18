@@ -70,32 +70,6 @@ namespace Leet.Specifications
 
         /// <summary>
         ///     Checks whether <see cref="IEquatable{T}.Equals(T)"/> returns same results as
-        ///     <see cref="object.Equals(object)"/> implementation.
-        /// </summary>
-        /// <param name="sut">
-        ///     Object under test.
-        /// </param>
-        /// <param name="other">
-        ///     Other instance to compare.
-        /// </param>
-        [Theory]
-        [AutoDomainData]
-        public void Equals_T_Always_ReturnsSameResultsAsObjectEquals(TSut sut, TSut other)
-        {
-            // Fixture setup
-            bool expectedResult = sut.Equals((object)other);
-
-            // Exercise system
-            bool result = sut.Equals(other);
-
-            // Verify outcome
-            Assert.Equal(expectedResult, result);
-
-            // Teardown
-        }
-
-        /// <summary>
-        ///     Checks whether <see cref="IEquatable{T}.Equals(T)"/> returns same results as
         ///     this same method called on the second instance.
         /// </summary>
         /// <param name="sut">
@@ -106,7 +80,7 @@ namespace Leet.Specifications
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void Equals_T_Always_ReturnsSameResultForSwappedInstance(TSut sut, TSut other)
+        public void Equals_T_ForSwappedInstances_ReturnsSameResult(TSut sut, TSut other)
         {
             // Fixture setup
             bool expectedResult = other.Equals(sut);
