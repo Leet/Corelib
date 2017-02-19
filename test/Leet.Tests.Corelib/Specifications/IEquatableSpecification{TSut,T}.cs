@@ -9,6 +9,7 @@
 namespace Leet.Specifications
 {
     using System;
+    using System.Reflection;
     using Xunit;
 
     /// <summary>
@@ -47,49 +48,97 @@ namespace Leet.Specifications
         }
 
         /// <summary>
-        ///     Checks whether <see cref="IEquatable{T}.Equals(T)"/> method returns <see langword="true"/>
-        ///     for same instance as parameter.
+        ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>Equals(TSut,T)</c> method.
         /// </summary>
-        /// <param name="sut">
-        ///     Object under test.
-        /// </param>
         [Theory]
         [AutoDomainData]
-        public void Equals_T_ForSameInstance_ReturnsTrue(TSut sut)
+        public void Type_Defines_StaticEqualsTSutTMethod()
         {
             // Fixture setup
+            Type sutType = typeof(TSut);
 
             // Exercise system
-            bool result = sut.Equals(sut);
+            MethodInfo method = sutType.GetMethod(
+                "Equals",
+                BindingFlags.Static | BindingFlags.Public,
+                Type.DefaultBinder,
+                new Type[] { typeof(TSut), typeof(T) },
+                null);
 
             // Verify outcome
-            Assert.True(result);
+            Assert.NotNull(method);
 
             // Teardown
         }
 
         /// <summary>
-        ///     Checks whether <see cref="IEquatable{T}.Equals(T)"/> returns same results as
-        ///     this same method called on the second instance.
+        ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>Equals(T,TSut)</c> method.
+        /// </summary>
+        [Theory]
+        [AutoDomainData]
+        public void Type_Defines_StaticEqualsTTSutMethod()
+        {
+            // Fixture setup
+            Type sutType = typeof(TSut);
+
+            // Exercise system
+            MethodInfo method = sutType.GetMethod(
+                "Equals",
+                BindingFlags.Static | BindingFlags.Public,
+                Type.DefaultBinder,
+                new Type[] { typeof(T), typeof(TSut) },
+                null);
+
+            // Verify outcome
+            Assert.NotNull(method);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <c>TSut.Equals(TSut,T)</c> method returns correct result
+        ///     for default instance parameter.
         /// </summary>
         /// <param name="sut">
         ///     Object under test.
         /// </param>
-        /// <param name="other">
-        ///     Other instance to compare.
+        [Theory]
+        [AutoDomainData]
+        public void StaticEquals_TSut_T_ForDefaultInstance_ReturnsCorrectResult(TSut sut)
+        {
+            // Fixture setup
+            Type sutType = typeof(TSut);
+            T other = default(T);
+
+            // Exercise system
+            bool result = (bool)sutType.InvokePublicMethod("Equals", sut, other);
+
+            // Verify outcome
+            Assert.True(!object.ReferenceEquals(other, null) || !result);
+
+            // Teardown
+        }
+
+        /// <summary>
+        ///     Checks whether <c>TSut.Equals(T,TSut)</c> method returns correct result
+        ///     for default instance parameter.
+        /// </summary>
+        /// <param name="sut">
+        ///     Object under test.
         /// </param>
         [Theory]
         [AutoDomainData]
-        public void Equals_T_ForSwappedInstances_ReturnsSameResult(TSut sut, TSut other)
+        public void StaticEquals_T_TSut_ForDefaultInstance_ReturnsCorrectResult(TSut sut)
         {
             // Fixture setup
-            bool expectedResult = other.Equals(sut);
+            Type sutType = typeof(TSut);
+            T other = default(T);
 
             // Exercise system
-            bool result = sut.Equals(other);
+            bool result = (bool)sutType.InvokePublicMethod("Equals", sut, other);
 
             // Verify outcome
-            Assert.Equal(expectedResult, result);
+            Assert.True(!object.ReferenceEquals(other, null) || !result);
 
             // Teardown
         }
