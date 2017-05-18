@@ -1,17 +1,24 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26510.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61EF525C-05D7-466F-81C9-4D008E931129}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B7830DEA-D115-49DE-A576-78BBBE650833}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Leet.Corelib", "src\Leet.Corelib\Leet.Corelib.xproj", "{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Leet.Tests.Corelib", "test\Leet.Tests.Corelib\Leet.Tests.Corelib.xproj", "{623ABD0A-78D3-4597-83A4-B8D565EE65EC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56D6B448-480A-4014-BE00-CE6F530D6B6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1425CC36-32A5-4FBB-BFE2-79BE666B4EDE}"
 	ProjectSection(SolutionItems) = preProject
+		build\CodeAnalysis.ruleset = build\CodeAnalysis.ruleset
+		build\Common.props = build\Common.props
+		build\Common.Tests.props = build\Common.Tests.props
+		build\Leet.public = build\Leet.public
+		build\Leet.snk = build\Leet.snk
+		build\repo.targets = build\repo.targets
+		build\Repository.props = build\Repository.props
+		build\StyleCop.json = build\StyleCop.json
+		build\Version.props = build\Version.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{32234DBA-1EF5-42F1-81BF-17C991C524F5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
@@ -19,15 +26,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.cmd = build.cmd
 		build.ps1 = build.ps1
 		build.sh = build.sh
-		CodeAnalysis.ruleset = CodeAnalysis.ruleset
-		global.json = global.json
 		LICENSE.txt = LICENSE.txt
 		makefile.shade = makefile.shade
 		NuGet.config = NuGet.config
-		NuGet.master.config = NuGet.master.config
 		README.md = README.md
-		StyleCop.json = StyleCop.json
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08A79FF8-4FE8-4F45-8711-69D5F4490413}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leet.Corelib", "src\Leet.Corelib\Leet.Corelib.csproj", "{AF8409B3-7860-4376-94C4-AD686406BEEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{30DA0C88-B34D-4549-A2B2-4DDB0ACCB6DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leet.Tests.Corelib", "test\Leet.Tests.Corelib\Leet.Tests.Corelib.csproj", "{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,20 +46,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{623ABD0A-78D3-4597-83A4-B8D565EE65EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8409B3-7860-4376-94C4-AD686406BEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8409B3-7860-4376-94C4-AD686406BEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8409B3-7860-4376-94C4-AD686406BEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8409B3-7860-4376-94C4-AD686406BEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8E11328B-8FA8-4BB4-B0FC-DEEB7A7E2BCB} = {61EF525C-05D7-466F-81C9-4D008E931129}
-		{623ABD0A-78D3-4597-83A4-B8D565EE65EC} = {B7830DEA-D115-49DE-A576-78BBBE650833}
+		{AF8409B3-7860-4376-94C4-AD686406BEEE} = {08A79FF8-4FE8-4F45-8711-69D5F4490413}
+		{9C5466BD-9C80-4B10-8DEC-F4BBFC420CC7} = {30DA0C88-B34D-4549-A2B2-4DDB0ACCB6DC}
 	EndGlobalSection
 EndGlobal

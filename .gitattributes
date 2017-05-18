@@ -9,8 +9,8 @@
 [attr]yml              text diff merge=text
 [attr]solution         text eol=crlf diff merge=text
 [attr]project          text eol=crlf diff merge=text
-[attr]shade            text diff merge=text
 [attr]xml              text diff merge=text
+[attr]ruleset          text eol=clrf diff merge=text
 [attr]markup           text diff merge
 [attr]csharp           text diff=csharp merge
 [attr]binary           -text -diff -merge
@@ -25,6 +25,7 @@
 ####################################################################
 .gitattributes         git
 .gitignore             git
+.editorconfig          git
 *.sh                   nixscript
 *.cmd                  windowsscript
 *.ps1                  windowsscript
@@ -33,12 +34,11 @@
 *.json                 json
 *.yml                  yml
 *.sln                  solution
-*.xproj                project
 *.csproj               project
-*.shade                shade
 *.config               xml
 *.resx                 xml
 *.cs                   csharp
 *.snk                  binary
 *.public               binary
-*.ruleset              xml
+*.ruleset              ruleset
+*.props                xml

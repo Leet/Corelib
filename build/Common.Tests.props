@@ -1,0 +1,9 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)Common.props"/>
+
+  <PropertyGroup>
+    <PackageTags>tests;$(PackageTags)</PackageTags>
+  </PropertyGroup>
+
+</Project>

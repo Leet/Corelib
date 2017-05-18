@@ -1,0 +1,11 @@
+<Project>
+  
+  <ItemGroup>
+    <ProjectsToPack Include="$(RepositoryRoot)test\*\*.csproj" Exclude="@(ExcludeFromPack)" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'" >
+    <ExcludeFromTest Include="$(RepositoryRoot)test\*\*.csproj" />
+  </ItemGroup>
+  
+</Project>

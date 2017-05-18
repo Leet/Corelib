@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="DisposableBase.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -10,7 +10,6 @@ namespace Leet
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
 
     /// <summary>
@@ -34,7 +33,6 @@ namespace Leet
         /// <summary>
         ///     Gets a value indicating whether current instance has been disposed.
         /// </summary>
-        [Pure]
         protected bool IsDisposed
         {
             get
@@ -76,7 +74,6 @@ namespace Leet
         /// <exception cref="ObjectDisposedException">
         ///     Current instance is disposed.
         /// </exception>
-        [Pure]
         protected void ThrowIfDisposed()
         {
             if (this.IsDisposed)
@@ -102,7 +99,6 @@ namespace Leet
         /// <exception cref="ObjectDisposedException">
         ///     Current object is disposed.
         /// </exception>
-        [Pure]
         private void ThrowObjectDisposedException()
         {
             throw new ObjectDisposedException(this.GetType().FullName);

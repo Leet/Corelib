@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="ObjectExtensionsSpecification{T}.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -195,7 +195,7 @@ namespace Leet.Specifications
             Type result = sut.GetTypeAllowNull();
 
             // Verify outcome
-            Assert.NotEqual(null, result);
+            Assert.NotNull(result);
             Assert.Equal(expectedType, result);
 
             // Teardown

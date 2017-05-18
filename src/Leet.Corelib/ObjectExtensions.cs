@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="ObjectExtensions.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -9,7 +9,6 @@
 namespace Leet
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     /// <summary>
     ///     A <see langword="static"/> class that contains extension methods for <see cref="object"/> type.
@@ -25,7 +24,6 @@ namespace Leet
         /// <returns>
         ///     A hash code of the specified object or 0 if the object is a <see langword="null"/> reference.
         /// </returns>
-        [Pure]
         public static int GetHashCodeAllowNull(this object obj)
         {
             if (object.ReferenceEquals(obj, null))
@@ -48,7 +46,6 @@ namespace Leet
         /// <returns>
         ///     A string that represents the specified object or specified string if the object is a <see langword="null"/> reference.
         /// </returns>
-        [Pure]
         public static string ToStringAllowNull(this object obj, string nullRepresentation)
         {
             if (object.ReferenceEquals(obj, null))
@@ -68,7 +65,6 @@ namespace Leet
         /// <returns>
         ///     Type of the specified object or <see langword="null"/> if the object is a <see langword="null"/> reference.
         /// </returns>
-        [Pure]
         public static Type GetTypeAllowNull(this object value)
         {
             if (object.ReferenceEquals(value, null))

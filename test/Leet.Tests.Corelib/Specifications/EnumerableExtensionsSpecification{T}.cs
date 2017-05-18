@@ -773,33 +773,33 @@ namespace Leet.Specifications
             {
                 fixture.CreateMany<T>(2).ToArray(),
                 fixture.CreateMany<T>(1).ToArray(),
-                fixture.CreateMany<T>(3).ToArray()
+                fixture.CreateMany<T>(3).ToArray(),
             };
             T[][] expectedResult = new[]
             {
                 new[]
                 {
-                    collections[0][0], collections[1][0], collections[2][0]
+                    collections[0][0], collections[1][0], collections[2][0],
                 },
                 new[]
                 {
-                    collections[0][0], collections[1][0], collections[2][1]
+                    collections[0][0], collections[1][0], collections[2][1],
                 },
                 new[]
                 {
-                    collections[0][0], collections[1][0], collections[2][2]
+                    collections[0][0], collections[1][0], collections[2][2],
                 },
                 new[]
                 {
-                    collections[0][1], collections[1][0], collections[2][0]
+                    collections[0][1], collections[1][0], collections[2][0],
                 },
                 new[]
                 {
-                    collections[0][1], collections[1][0], collections[2][1]
+                    collections[0][1], collections[1][0], collections[2][1],
                 },
                 new[]
                 {
-                    collections[0][1], collections[1][0], collections[2][2]
+                    collections[0][1], collections[1][0], collections[2][2],
                 },
             };
 

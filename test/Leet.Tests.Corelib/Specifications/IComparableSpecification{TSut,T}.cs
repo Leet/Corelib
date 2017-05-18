@@ -91,7 +91,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
             Type[] paraeterTypes = new Type[]
             {
-                typeof(T), typeof(T)
+                typeof(T), typeof(T),
             };
 
             // Exercise system
@@ -114,7 +114,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
             Type[] paraeterTypes = new Type[]
             {
-                typeof(T), typeof(T)
+                typeof(T), typeof(T),
             };
 
             // Exercise system
@@ -137,7 +137,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
             Type[] paraeterTypes = new Type[]
             {
-                typeof(T), typeof(T)
+                typeof(T), typeof(T),
             };
 
             // Exercise system
@@ -160,7 +160,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
             Type[] paraeterTypes = new Type[]
             {
-                typeof(T), typeof(T)
+                typeof(T), typeof(T),
             };
 
             // Exercise system
@@ -184,7 +184,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
             Type[] paraeterTypes = new Type[]
             {
-                typeof(T), typeof(T)
+                typeof(T), typeof(T),
             };
 
             // Exercise system
@@ -212,7 +212,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -245,7 +245,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -278,7 +278,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -311,7 +311,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -345,7 +345,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -379,7 +379,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -413,7 +413,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system
@@ -447,7 +447,7 @@ namespace Leet.Specifications
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
             object[] args = new object[]
             {
-                sut, sut
+                sut, sut,
             };
 
             // Exercise system

@@ -50,8 +50,7 @@ namespace Leet.Specifications
         /// <summary>
         ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>Equals(TSut,T)</c> method.
         /// </summary>
-        [Theory]
-        [AutoDomainData]
+        [Fact]
         public void Type_Defines_StaticEqualsTSutTMethod()
         {
             // Fixture setup
@@ -74,8 +73,7 @@ namespace Leet.Specifications
         /// <summary>
         ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>Equals(T,TSut)</c> method.
         /// </summary>
-        [Theory]
-        [AutoDomainData]
+        [Fact]
         public void Type_Defines_StaticEqualsTTSutMethod()
         {
             // Fixture setup

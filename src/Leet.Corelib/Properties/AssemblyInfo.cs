@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -7,16 +7,12 @@
 // -----------------------------------------------------------------------
 
 using System;
-using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("Leet")]
-[assembly: AssemblyProduct("Corelib")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
-[assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: InternalsVisibleTo("Leet.Tests.Corelib, PublicKey=" +
 "00240000048000009400000006020000002400005253413100040000010001006767aa266083a482" +

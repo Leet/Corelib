@@ -10,7 +10,6 @@ namespace Leet
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Linq;
 
     /// <summary>
@@ -56,7 +55,6 @@ namespace Leet
         /// <summary>
         ///     Gets the collection item's equality comparer.
         /// </summary>
-        [Pure]
         public IEqualityComparer<T> ItemComparer
         {
             get
@@ -78,7 +76,6 @@ namespace Leet
         ///     <see langword="true"/> if the specified collections are equal;
         ///     otherwise, <see langword="false"/>.
         /// </returns>
-        [Pure]
         public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
         {
             if (object.ReferenceEquals(x, y))
@@ -107,7 +104,6 @@ namespace Leet
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="obj"/> is <see langword="null"/>.
         /// </exception>
-        [Pure]
         public int GetHashCode(IEnumerable<T> obj)
         {
             if (object.ReferenceEquals(obj, null))

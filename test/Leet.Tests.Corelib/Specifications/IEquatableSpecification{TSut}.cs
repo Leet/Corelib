@@ -122,8 +122,7 @@ namespace Leet.Specifications
         /// <summary>
         ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>op_Equality(TSut,TSut)</c> operator.
         /// </summary>
-        [Theory]
-        [AutoDomainData]
+        [Fact]
         public void Type_Defines_StaticEqualityTSutTSutOperator_OrIsReferenceType()
         {
             // Fixture setup
@@ -146,8 +145,7 @@ namespace Leet.Specifications
         /// <summary>
         ///     Checks whether <typeparamref name="TSut"/> defaines a <see langword="static"/> <c>op_Inequality(TSut,TSut)</c> operator.
         /// </summary>
-        [Theory]
-        [AutoDomainData]
+        [Fact]
         public void Type_Defines_StaticInequalityTSutTSutOperator_OrIsReferenceType()
         {
             // Fixture setup

@@ -1,4 +1,4 @@
-version: 0.0.2.{build}-{branch}
+﻿version: 0.0.2.{build}-{branch}
 init:
 - ps: git config --global core.autocrlf true
 environment:
@@ -7,11 +7,10 @@ environment:
 nuget:
   disable_publish_on_pr: true
 build_script:
-- ps: .\build.cmd --quiet verify
+- ps: .\build.ps1
 test: off
 artifacts:
-- path: artifacts\build\Leet.Corelib\Release\Leet.Corelib.*.nupkg
-- path: artifacts\build\Leet.Tests.Corelib\Release\Leet.Tests.Corelib.*.nupkg
+- path: artifacts\build\Leet.*.nupkg
 deploy:
 - provider: Environment
   name: MyGet

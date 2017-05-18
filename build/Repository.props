@@ -1,0 +1,8 @@
+<Project>
+
+  <PropertyGroup>
+    <RepositoryTags>corelib</RepositoryTags>
+    <RepositoryName>Corelib</RepositoryName>
+  </PropertyGroup>
+  
+</Project>

@@ -1,0 +1,54 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)Version.props"/>
+  <Import Project="$(MSBuildThisFileDirectory)Repository.props"/>
+
+  <PropertyGroup>
+    <Configuration Condition="'$(CI)' == 'True'">Release</Configuration>
+    <Feature>IOperation</Feature>
+    <VersionTimestamp>$([System.Int64]::Parse($([System.DateTime]::UtcNow.Subtract($([System.DateTime]::FromBinary(635556672000000000))).TotalMinutes.ToString("F0"))).ToString("x9"))</VersionTimestamp>
+    <VersionSuffix Condition="'$(VersionSuffix)' == '' AND '$(CI)' == 'True' AND '$(CommitHash)' != ''">ci$(CommitHash)</VersionSuffix>
+    <VersionSuffix Condition="'$(VersionSuffix)' == ''">t$(VersionTimestamp)</VersionSuffix>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Leet.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">True</PublicSign>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <NoWarn />
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <IncludeXunitAdapterAssets Condition="'$(IncludeXunitAdapterAssets)'==''">False</IncludeXunitAdapterAssets>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Authors>Hubert Bukowski</Authors>
+    <Company>Leet</Company>
+    <Copyright>Copyright (c) Leet. All rights reserved. Licensed under the MIT License.</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Leet/$(RepositoryName)/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Leet/$(RepositoryName)</PackageProjectUrl>
+    <RepositoryUrl>git://github.com/Leet/$(RepositoryName)</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>leet;$(RepositoryTags)</PackageTags>
+    <PackageReleaseNotes>$(PackageReleaseNotes)</PackageReleaseNotes>
+    <PackageIconUrl>$(PackageIconUrl)</PackageIconUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001" PrivateAssets="All" />
+  </ItemGroup>
+  
+</Project>
