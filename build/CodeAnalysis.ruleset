@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="Rules for Leet projects." Description="Code analysis rules for used in all Leet projects." ToolsVersion="15.0">
   <Include Path="allrules.ruleset" Action="Default" />
   <Include Path="basiccorrectnessrules.ruleset" Action="Default" />
@@ -933,10 +933,10 @@
     <Rule Id="SA1625" Action="Warning" />
     <Rule Id="SA1626" Action="Warning" />
     <Rule Id="SA1627" Action="Warning" />
-    <Rule Id="SA1633" Action="Hidden" />
+    <Rule Id="SA1633" Action="Warning" />
     <Rule Id="SA1634" Action="Warning" />
     <Rule Id="SA1635" Action="Warning" />
-    <Rule Id="SA1636" Action="Hidden" />
+    <Rule Id="SA1636" Action="Warning" />
     <Rule Id="SA1637" Action="Warning" />
     <Rule Id="SA1638" Action="Warning" />
     <Rule Id="SA1639" Action="None" />
