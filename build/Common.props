@@ -4,6 +4,11 @@
   <Import Project="$(MSBuildThisFileDirectory)Repository.props"/>
 
   <PropertyGroup>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Configuration Condition="'$(CI)' == 'True'">Release</Configuration>
     <Feature>IOperation</Feature>
     <VersionTimestamp>$([System.Int64]::Parse($([System.DateTime]::UtcNow.Subtract($([System.DateTime]::FromBinary(635556672000000000))).TotalSeconds.ToString("F0"))).ToString("x9"))</VersionTimestamp>
@@ -49,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" PrivateAssets="All" />
   </ItemGroup>
   
 </Project>

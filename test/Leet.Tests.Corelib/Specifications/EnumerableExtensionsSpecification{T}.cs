@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="EnumerableExtensionsSpecification{T}.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -142,7 +142,7 @@ namespace Leet.Specifications
             // Verify outcome
             Assert.Throws<ArgumentNullException>(nameof(source), () =>
             {
-                source.Insert(0, default(T));
+                source.Insert(insertAt, default(T));
             });
 
             // Teardown
@@ -662,7 +662,7 @@ namespace Leet.Specifications
         public void CartesianProduct_IEnumerableOfIEnumerableOfT_Always_ReturnsSameResult(IEnumerable<IEnumerable<T>> collection)
         {
             // Fixture setup
-            SequenceEqualityComparer<T> itemComparer = new SequenceEqualityComparer<T>();
+            var itemComparer = new SequenceEqualityComparer<T>();
 
             // Exercise system
             IEnumerable<IEnumerable<T>> first = collection.CartesianProduct();

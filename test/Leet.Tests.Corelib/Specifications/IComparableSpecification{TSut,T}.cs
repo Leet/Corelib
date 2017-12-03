@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="IComparableSpecification{TSut,T}.cs" company="Leet">
 //     Copyright (c) Leet. All rights reserved.
 //     Licensed under the MIT License.
@@ -535,12 +535,8 @@ namespace Leet.Specifications
         ///     Checks whether <see cref="IComparable{T}.CompareTo(T)"/> method when called with both <see langword="null"/>
         ///     reference parameters returns 0.
         /// </summary>
-        /// <param name="sut">
-        ///     Object under test.
-        /// </param>
-        [Theory]
-        [AutoDomainData]
-        public void StaticCompare_T_T_CalledWithBothNullParameters_ReturnsZero(TSut sut)
+        [Fact]
+        public void StaticCompare_T_T_CalledWithBothNullParameters_ReturnsZero()
         {
             // Fixture setup
             TSut other = default(TSut);
